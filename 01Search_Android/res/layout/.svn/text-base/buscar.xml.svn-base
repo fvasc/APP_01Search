@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/fundo"
+    android:orientation="vertical" >
+    
+    <TextView android:textAppearance="?android:attr/textAppearanceLarge" android:id="@+id/textView1" android:layout_height="wrap_content" android:layout_width="wrap_content" android:text="Pesquisar Produtos:"></TextView>
+    <RelativeLayout android:id="@+id/relativeLayout2" android:layout_width="fill_parent" android:layout_height="wrap_content">
+        <EditText android:layout_width="271dp" android:layout_height="wrap_content" android:id="@+id/editText1" android:layout_alignParentTop="true" android:layout_alignParentLeft="true" android:layout_alignParentRight="true" android:text="a"></EditText>
+        <ImageView android:layout_height="50px" android:id="@+id/limpar" android:src="@drawable/limpar" android:layout_centerVertical="true" android:layout_alignParentRight="true" android:layout_width="50px"></ImageView>
+    </RelativeLayout>
+    <RelativeLayout android:layout_width="fill_parent" android:id="@+id/relativeLayout1" android:layout_height="42dp">
+        <Button android:background="@drawable/camera" android:id="@+id/button2" android:layout_alignParentTop="true" android:layout_alignParentLeft="true" android:layout_marginLeft="19dp" android:layout_height="30dp" android:layout_alignParentBottom="true" android:layout_width="40dp"></Button>
+        <Button android:id="@+id/button1" android:layout_width="95dp" android:layout_height="60px" android:background="@drawable/buscar" android:layout_alignBaseline="@+id/button2" android:layout_alignBottom="@+id/button2" android:layout_alignParentRight="true" android:layout_marginRight="8dp"></Button>
+    </RelativeLayout>
+    <ScrollView android:id="@+id/scrollView1" android:layout_height="wrap_content" android:layout_width="fill_parent">
+        <LinearLayout android:id="@+id/linearLayout1" android:layout_width="fill_parent" android:layout_height="fill_parent">
+
+            <ListView
+                android:id="@+id/listView1"
+                android:layout_width="fill_parent"
+                android:layout_height="402dp"
+                android:cacheColorHint="@android:color/white"
+                android:divider="@drawable/divider"
+                android:drawSelectorOnTop="false" >
+
+</ListView>
+        </LinearLayout>
+    </ScrollView>
+    
+</LinearLayout>

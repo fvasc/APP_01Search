@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/a6pgp/!svn/ver/9701/A2012-PDS/DeusNinjaDoCotopete/01Search_Android/src/login/google
+END
+PrepareRequestTokenActivity.java
+K 25
+svn:wc:ra_dav:version-url
+V 121
+/svn/a6pgp/!svn/ver/9109/A2012-PDS/DeusNinjaDoCotopete/01Search_Android/src/login/google/PrepareRequestTokenActivity.java
+END
+Constants.java
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/a6pgp/!svn/ver/9109/A2012-PDS/DeusNinjaDoCotopete/01Search_Android/src/login/google/Constants.java
+END
+RetrieveAccessTokenTask.java
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/svn/a6pgp/!svn/ver/9109/A2012-PDS/DeusNinjaDoCotopete/01Search_Android/src/login/google/RetrieveAccessTokenTask.java
+END
+OAuthFlowApp.java
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/a6pgp/!svn/ver/9701/A2012-PDS/DeusNinjaDoCotopete/01Search_Android/src/login/google/OAuthFlowApp.java
+END
+OAuthRequestTokenTask.java
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/svn/a6pgp/!svn/ver/9109/A2012-PDS/DeusNinjaDoCotopete/01Search_Android/src/login/google/OAuthRequestTokenTask.java
+END

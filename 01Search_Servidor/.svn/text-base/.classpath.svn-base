@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6"/>
+	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
+	<classpathentry kind="lib" path="C:/Users/Nathan/Documents/Trabalhos/Projeto - 01 Search/Programa/Bibliotecas/ServidorProjeto/antlr-2.7.7.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Nathan/Documents/Trabalhos/Projeto - 01 Search/Programa/Bibliotecas/ServidorProjeto/c3p0-0.9.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Nathan/Documents/Trabalhos/Projeto - 01 Search/Programa/Bibliotecas/ServidorProjeto/classmate-0.5.4.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Nathan/Documents/Trabalhos/Projeto - 01 Search/Programa/Bibliotecas/ServidorProjeto/commons-collections-3.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Nathan/Documents/Trabalhos/Projeto - 01 Search/Programa/Bibliotecas/ServidorProjeto/dom4j-1.6.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Nathan/Documents/Trabalhos/Projeto - 01 Search/Programa/Bibliotecas/ServidorProjeto/ehcache-core-2.4.3.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Nathan/Documents/Trabalhos/Projeto - 01 Search/Programa/Bibliotecas/ServidorProjeto/hibernate-c3p0-4.0.0.CR3.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Nathan/Documents/Trabalhos/Projeto - 01 Search/Programa/Bibliotecas/ServidorProjeto/hibernate-commons-annotations-4.0.0.CR2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Nathan/Documents/Trabalhos/Projeto - 01 Search/Programa/Bibliotecas/ServidorProjeto/hibernate-core-4.0.0.CR3.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Nathan/Documents/Trabalhos/Projeto - 01 Search/Programa/Bibliotecas/ServidorProjeto/hibernate-ehcache-4.0.0.CR3.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Nathan/Documents/Trabalhos/Projeto - 01 Search/Programa/Bibliotecas/ServidorProjeto/hibernate-entitymanager-4.0.0.CR3.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Nathan/Documents/Trabalhos/Projeto - 01 Search/Programa/Bibliotecas/ServidorProjeto/hibernate-envers-4.0.0.CR3.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Nathan/Documents/Trabalhos/Projeto - 01 Search/Programa/Bibliotecas/ServidorProjeto/hibernate-infinispan-4.0.0.CR3.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Nathan/Documents/Trabalhos/Projeto - 01 Search/Programa/Bibliotecas/ServidorProjeto/hibernate-jpa-2.0-api-1.0.1.Final.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Nathan/Documents/Trabalhos/Projeto - 01 Search/Programa/Bibliotecas/ServidorProjeto/hibernate-proxool-4.0.0.CR3.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Nathan/Documents/Trabalhos/Projeto - 01 Search/Programa/Bibliotecas/ServidorProjeto/i18nlog-1.0.10.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Nathan/Documents/Trabalhos/Projeto - 01 Search/Programa/Bibliotecas/ServidorProjeto/infinispan-core-5.0.0.CR4.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Nathan/Documents/Trabalhos/Projeto - 01 Search/Programa/Bibliotecas/ServidorProjeto/jandex-1.0.3.Final.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Nathan/Documents/Trabalhos/Projeto - 01 Search/Programa/Bibliotecas/ServidorProjeto/javassist-3.12.0.GA.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Nathan/Documents/Trabalhos/Projeto - 01 Search/Programa/Bibliotecas/ServidorProjeto/jboss-logging-3.0.0.GA.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Nathan/Documents/Trabalhos/Projeto - 01 Search/Programa/Bibliotecas/ServidorProjeto/jboss-marshalling-1.3.0.CR9.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Nathan/Documents/Trabalhos/Projeto - 01 Search/Programa/Bibliotecas/ServidorProjeto/jboss-marshalling-river-1.3.0.CR9.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Nathan/Documents/Trabalhos/Projeto - 01 Search/Programa/Bibliotecas/ServidorProjeto/jboss-transaction-api-1.0.1.GA.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Nathan/Documents/Trabalhos/Projeto - 01 Search/Programa/Bibliotecas/ServidorProjeto/jcl-over-slf4j-1.6.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Nathan/Documents/Trabalhos/Projeto - 01 Search/Programa/Bibliotecas/ServidorProjeto/jcl-over-slf4j-1.6.2-sources.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Nathan/Documents/Trabalhos/Projeto - 01 Search/Programa/Bibliotecas/ServidorProjeto/jgroups-2.12.0.Final.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Nathan/Documents/Trabalhos/Projeto - 01 Search/Programa/Bibliotecas/ServidorProjeto/jta-1.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Nathan/Documents/Trabalhos/Projeto - 01 Search/Programa/Bibliotecas/ServidorProjeto/jul-to-slf4j-1.6.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Nathan/Documents/Trabalhos/Projeto - 01 Search/Programa/Bibliotecas/ServidorProjeto/jul-to-slf4j-1.6.2-sources.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Nathan/Documents/Trabalhos/Projeto - 01 Search/Programa/Bibliotecas/ServidorProjeto/ksoap2-android-assembly-2.5.7-jar-with-dependencies.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Nathan/Documents/Trabalhos/Projeto - 01 Search/Programa/Bibliotecas/ServidorProjeto/log4j-1.2.16.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Nathan/Documents/Trabalhos/Projeto - 01 Search/Programa/Bibliotecas/ServidorProjeto/log4j-over-slf4j-1.6.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Nathan/Documents/Trabalhos/Projeto - 01 Search/Programa/Bibliotecas/ServidorProjeto/log4j-over-slf4j-1.6.2-sources.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Nathan/Documents/Trabalhos/Projeto - 01 Search/Programa/Bibliotecas/ServidorProjeto/mysql-connector-java-5.1.17-bin.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Nathan/Documents/Trabalhos/Projeto - 01 Search/Programa/Bibliotecas/ServidorProjeto/proxool-0.8.3.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Nathan/Documents/Trabalhos/Projeto - 01 Search/Programa/Bibliotecas/ServidorProjeto/rhq-pluginAnnotations-3.0.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Nathan/Documents/Trabalhos/Projeto - 01 Search/Programa/Bibliotecas/ServidorProjeto/slf4j-api-1.6.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Nathan/Documents/Trabalhos/Projeto - 01 Search/Programa/Bibliotecas/ServidorProjeto/slf4j-api-1.6.2-sources.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Nathan/Documents/Trabalhos/Projeto - 01 Search/Programa/Bibliotecas/ServidorProjeto/slf4j-ext-1.6.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Nathan/Documents/Trabalhos/Projeto - 01 Search/Programa/Bibliotecas/ServidorProjeto/slf4j-ext-1.6.2-sources.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Nathan/Documents/Trabalhos/Projeto - 01 Search/Programa/Bibliotecas/ServidorProjeto/slf4j-jcl-1.6.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Nathan/Documents/Trabalhos/Projeto - 01 Search/Programa/Bibliotecas/ServidorProjeto/slf4j-jcl-1.6.2-sources.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Nathan/Documents/Trabalhos/Projeto - 01 Search/Programa/Bibliotecas/ServidorProjeto/slf4j-jdk14-1.6.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Nathan/Documents/Trabalhos/Projeto - 01 Search/Programa/Bibliotecas/ServidorProjeto/slf4j-jdk14-1.6.2-sources.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Nathan/Documents/Trabalhos/Projeto - 01 Search/Programa/Bibliotecas/ServidorProjeto/slf4j-log4j12-1.6.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Nathan/Documents/Trabalhos/Projeto - 01 Search/Programa/Bibliotecas/ServidorProjeto/slf4j-log4j12-1.6.2-sources.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Nathan/Documents/Trabalhos/Projeto - 01 Search/Programa/Bibliotecas/ServidorProjeto/slf4j-migrator-1.6.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Nathan/Documents/Trabalhos/Projeto - 01 Search/Programa/Bibliotecas/ServidorProjeto/slf4j-nop-1.6.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Nathan/Documents/Trabalhos/Projeto - 01 Search/Programa/Bibliotecas/ServidorProjeto/slf4j-nop-1.6.2-sources.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Nathan/Documents/Trabalhos/Projeto - 01 Search/Programa/Bibliotecas/ServidorProjeto/slf4j-simple-1.6.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Nathan/Documents/Trabalhos/Projeto - 01 Search/Programa/Bibliotecas/ServidorProjeto/slf4j-simple-1.6.2-sources.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Nathan/Documents/Trabalhos/Projeto - 01 Search/Programa/Bibliotecas/ServidorProjeto/xstream-1.4.1.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

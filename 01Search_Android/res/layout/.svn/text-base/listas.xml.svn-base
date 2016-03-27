@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/container"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/fundo"
+    android:layoutAnimation="@anim/layout_bottom_to_top_slide"
+    android:orientation="vertical"
+    android:weightSum="1" >
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout1"
+        android:layout_width="fill_parent"
+        android:layout_height="45dp"
+        android:background="@drawable/prata"
+        android:gravity="top" >
+
+        <TextView
+            android:id="@+id/notificacao"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/login"
+            android:layout_alignTop="@+id/refresh"
+            android:layout_toLeftOf="@+id/novaLista"
+            android:layout_toRightOf="@+id/login"
+            android:gravity="center"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+        <Button
+            android:id="@+id/login"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_alignBaseline="@+id/novaLista"
+            android:layout_alignBottom="@+id/novaLista"
+            android:layout_alignParentLeft="true"
+            android:background="@drawable/login" />
+
+        <Button
+            android:id="@+id/novaLista"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentTop="true"
+            android:layout_toLeftOf="@+id/refresh"
+            android:background="@drawable/add_page"
+            android:fadeScrollbars="false" />
+
+        <Button
+            android:id="@+id/refresh"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignTop="@+id/login"
+            android:background="@drawable/refresh" />
+
+        <Button
+            android:id="@+id/adicionarItem"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/novaLista"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignRight="@+id/novaLista"
+            android:text="add" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
+
+        <ExpandableListView
+            android:id="@+id/expandableListViewItemLista"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content" >
+        </ExpandableListView>
+
+        <ListView
+            android:id="@+id/listViewLista"
+            android:layout_width="fill_parent"
+            android:layout_height="446dp" >
+        </ListView>
+
+    </RelativeLayout>
+    
+</LinearLayout>

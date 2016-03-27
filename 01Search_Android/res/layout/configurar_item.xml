@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/fundo"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:orientation="vertical" >
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/relativeLayoutitemLista"
+        android:layout_width="fill_parent"
+        android:layout_height="60dp"
+        android:background="#dcdcdc"
+        android:gravity="center" >
+
+        <ImageView
+            android:id="@+id/ItemImageViewVoltar"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:src="@drawable/voltar" />
+
+        <ImageView
+            android:id="@+id/ItemListaImageViewMenu"
+            android:layout_width="20dp"
+            android:layout_height="30dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="14dp"
+            android:clickable="true"
+            android:src="@drawable/menu"
+            android:visibility="invisible" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/ItemListaNomeLista"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:ellipsize="end"
+                android:text="Nome do Item"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="#000000" />
+
+        </LinearLayout>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="72dp"
+        android:layout_marginTop="1dp"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:id="@+id/linearAddItemQuantidade"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content" >
+
+            <LinearLayout
+                android:id="@+id/linearLayout2"
+                android:layout_width="wrap_content"
+                android:layout_height="45dp"
+                android:background="#dcdcdc"
+                android:gravity="top" >
+
+                <AutoCompleteTextView
+                    android:id="@+id/ItemListaautoComplete"
+                    android:layout_width="220dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="bottom"
+                    android:layout_marginLeft="5dp"
+                    android:ellipsize="start"
+                    android:ems="10"
+                    android:hint="Procurar codigo de barras..."
+                    android:imeOptions="actionDone"
+                    android:lines="1"
+                    android:maxLength="20"
+                    android:maxLines="1"
+                    android:paddingRight="3dp"
+                    android:scrollHorizontally="true"
+                    android:textColor="@android:color/primary_text_light"
+                    android:textSize="13dp" />
+
+                <ImageView
+                    android:id="@+id/configurar_add"
+                    android:layout_width="40dp"
+                    android:layout_height="45dp"
+                    android:layout_weight="1"
+                    android:src="@drawable/search" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearLayout1"
+                android:layout_width="fill_parent"
+                android:layout_height="45dp"
+                android:layout_marginLeft="1dp"
+                android:background="#dcdcdc"
+                android:gravity="center" >
+
+                <Button
+                    android:id="@+id/buttonCamera"
+                    android:layout_width="45dp"
+                    android:layout_height="fill_parent"
+                    android:background="@drawable/camera" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="25dp"
+            android:paddingTop="1dp" >
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent" >
+
+                <RelativeLayout
+                    android:id="@+id/configurarRelativeOrdNome"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:background="#dcdcdc"
+                    android:gravity="left" >
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:layout_alignParentLeft="true"
+                        android:gravity="center" >
+
+                        <TextView
+                            android:id="@+id/textView2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:hint="Nome"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textColor="@android:color/darker_gray"
+                            android:textSize="12dp" />
+
+                        <ImageView
+                            android:id="@+id/configurarImageViewUpOrDown"
+                            android:layout_width="15dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:src="@drawable/up" />
+
+                    </LinearLayout>
+                </RelativeLayout>
+            </LinearLayout>
+        </RelativeLayout>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.03" >
+
+        <ListView
+            android:id="@+id/item_listview"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:cacheColorHint="@android:color/transparent"
+            android:layout_alignParentTop="true" >
+
+        </ListView>
+
+    </RelativeLayout>
+
+</LinearLayout>

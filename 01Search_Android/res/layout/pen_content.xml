@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent"
+	android:layout_gravity="bottom"
+	android:background="@drawable/pattern1"
+	android:gravity="center">
+	<LinearLayout
+		android:layout_alignParentBottom="true"	
+		android:layout_width="fill_parent"
+		android:orientation="vertical"
+		android:gravity="bottom"
+		android:layout_height="wrap_content" android:id="@+id/linearLayout1">
+		
+		<LinearLayout
+			android:layout_width="fill_parent"
+			android:layout_height="1px"
+			android:background="#FF999999" />
+		<RelativeLayout
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content">
+			<LinearLayout
+				android:id="@+id/layout01"
+				android:layout_width="fill_parent"
+				android:layout_height="wrap_content"
+				android:gravity="center"
+				android:background="#FFEEEEEE"
+				android:padding="10dp">
+			</LinearLayout>
+			<LinearLayout
+				android:layout_above="@id/layout01"
+				android:layout_width="fill_parent"
+				android:layout_height="1px"
+				android:background="#FF999999" />
+		</RelativeLayout>
+	</LinearLayout>
+	<TextView android:textAppearance="?android:attr/textAppearanceLarge" android:layout_height="wrap_content" android:layout_width="wrap_content" android:layout_alignParentTop="true" android:layout_alignParentLeft="true" android:layout_marginTop="41dp" android:textColor="#000000" android:text="Adicionar *produto* à lista:" android:id="@+id/textoProduto"></TextView>
+	<RelativeLayout android:layout_width="fill_parent" android:id="@+id/relativeLayout1" android:layout_height="wrap_content" android:layout_alignParentLeft="true" android:layout_marginTop="90dp" android:layout_below="@+id/spinner76">
+		<EditText android:layout_alignParentTop="true" android:layout_height="wrap_content" android:layout_width="80dp" android:layout_centerHorizontal="true" android:inputType="phone" android:digits="0123456789" android:id="@+id/editText35" android:text="1">
+			<requestFocus></requestFocus>
+		</EditText>
+		<Button android:layout_alignBottom="@+id/editText1" android:layout_alignParentRight="true" android:layout_marginRight="15dp" android:layout_height="35dp" android:layout_alignBaseline="@+id/editText1" android:layout_width="35dp" android:background="@drawable/menos" android:id="@+id/btmenos2"></Button>
+		<Button android:layout_alignParentLeft="true" android:layout_height="35dp" android:layout_marginLeft="15dp" android:layout_width="35dp" android:layout_centerVertical="true" android:background="@drawable/mais" android:id="@+id/btmais2"></Button>
+	</RelativeLayout>
+	<TextView android:textAppearance="?android:attr/textAppearanceLarge" android:text="Quantidade:" android:layout_height="wrap_content" android:layout_width="wrap_content" android:textColor="#000000" android:id="@+id/TextView01" android:layout_alignParentLeft="true" android:layout_marginTop="46dp" android:layout_below="@+id/spinner76"></TextView>
+	<Button android:id="@+id/ok2" android:layout_height="wrap_content" android:text="Confirmar" android:layout_width="wrap_content" android:layout_below="@+id/relativeLayout1" android:layout_centerHorizontal="true" android:layout_marginTop="46dp"></Button>
+	<Spinner android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_alignParentLeft="true" android:layout_marginTop="27dp" android:id="@+id/spinner76" android:layout_below="@+id/textoProduto"></Spinner>
+</RelativeLayout>

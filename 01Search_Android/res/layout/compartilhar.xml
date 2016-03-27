@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="300dp"
+    android:layout_height="fill_parent"
+    android:layout_gravity="center"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:weightSum="1" >
+
+    <TableLayout
+        android:id="@+id/TableLayout1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:layout_width="280dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="#363636"
+            android:gravity="center"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:gravity="center" >
+
+                <TextView
+                    android:id="@+id/textView1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="10dp"
+                    android:text="Pessoas que compartilham a lista"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textSize="16dp" />
+
+                <ImageButton
+                    android:id="@+id/ImageButton02"
+                    android:layout_width="33dp"
+                    android:layout_height="33dp"
+                    android:layout_gravity="right|center_vertical"
+                    android:layout_marginLeft="10dp"
+                    android:src="@drawable/help" />
+            </LinearLayout>
+
+            <ListView
+                android:id="@+id/listView1"
+                android:layout_width="fill_parent"
+                android:layout_height="200dp" >
+
+            </ListView>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="280dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:background="#363636"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:visibility="visible" >
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="left|center_vertical" >
+
+                <TextView
+                    android:id="@+id/dialo_itemlista_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:text="Adicione pessoas"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textSize="16dp" />
+
+                <ImageButton
+                    android:id="@+id/ImageButton01"
+                    android:layout_width="33dp"
+                    android:layout_height="33dp"
+                    android:layout_gravity="right|center_vertical"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:src="@drawable/help" />
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content" >
+
+                <RelativeLayout
+                    android:id="@+id/dialo_itemlista_dur_itemlayout"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content" >
+
+                    <EditText
+                        android:id="@+id/dialo_itemlista_item_edit"
+                        android:layout_width="80dp"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_margin="10dp"
+                        android:digits="0123456789"
+                        android:ems="10"
+                        android:hint="email@email.com"
+                        android:inputType="phone" >
+
+                        <requestFocus />
+                    </EditText>
+
+                </RelativeLayout>
+            </RelativeLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/LinearLayout1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="#dcdcdc"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:id="@+id/LinearLayout1"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_gravity="bottom"
+                android:layout_marginTop="10dp"
+                android:gravity="bottom|center_horizontal" >
+
+                <Button
+                    android:id="@+id/dialoItemListaOk"
+                    android:layout_width="140dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:gravity="center"
+                    android:text="OK" />
+
+                <Button
+                    android:id="@+id/dialoItemListaCancelar"
+                    android:layout_width="140dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="Cancelar" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+    </TableLayout>
+
+</LinearLayout>

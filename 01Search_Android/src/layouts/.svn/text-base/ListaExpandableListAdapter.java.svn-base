@@ -1,0 +1,192 @@
+package layouts;
+
+import java.util.ArrayList;
+
+import android.content.Context;
+import android.graphics.Color;
+import android.graphics.Typeface;
+import android.view.Gravity;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AbsListView;
+import android.widget.BaseExpandableListAdapter;
+import android.widget.CheckBox;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
+import android.widget.RelativeLayout.LayoutParams;
+
+public class ListaExpandableListAdapter<P, F>  extends BaseExpandableListAdapter {
+	
+	private static final String TAG = "CustomExpandableListAdapter";
+	private ArrayList<P> list_pai;
+	private ArrayList<ArrayList<F>> list_filho;
+	private Context context;
+    
+	public ListaExpandableListAdapter(Context context, ArrayList<P> list_pai, ArrayList<ArrayList<F>> list_filho){
+		super( );
+		
+		this.context = context;
+		this.list_pai = list_pai;
+		this.list_filho = list_filho;
+		
+		
+		
+
+	    
+		/*setPadding(0, 6, 0, 6);
+		
+		RelativeLayout.LayoutParams Params = new RelativeLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);		
+			
+		Params.setMargins(415, 0, 0, 0);
+		
+		final CheckBox check = new CheckBox(context);
+		check.setFocusable(false);
+		check.setFocusableInTouchMode(false);
+		//check.setChecked(item.getComprado());
+		addView(check, Params);*/
+		
+//		check.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+//			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+//				item.setComprado(check.isChecked());	
+//				
+//				Conexao.getReference().atualizarProdutosLista(item);
+//			}
+//		});
+		
+		/*RelativeLayout.LayoutParams params1 = new RelativeLayout.LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.FILL_PARENT);
+		params1.setMargins(0, 0, 0, 0);
+		
+		LinearLayout PanelV = new LinearLayout(context);
+		PanelV.setOrientation(LinearLayout.VERTICAL);
+		PanelV.setGravity(Gravity.BOTTOM);
+		
+		TextView textName = new TextView( context );
+		textName.setTextSize(16);
+		textName.setTypeface(Typeface.DEFAULT, Typeface.BOLD);
+		//textName.setText(itemLista.getItem().getNome());
+		PanelV.addView(textName);       
+		
+		TextView textAddress = new TextView( context );
+		textAddress.setTextSize(14);
+		textAddress.setText( String.format("Qtd: %d", itemLista.getQuantidade()));
+		PanelV.addView(textAddress);    
+		
+		addView(PanelV, params1);		*/
+	}
+	
+	public ListaExpandableListAdapter() {
+	}
+    
+    public ArrayList<ArrayList<F>> getList_filho() {
+		return list_filho;
+	}
+
+	public void setList_filho(ArrayList<ArrayList<F>> list_filho) {
+		this.list_filho = list_filho;
+	}
+
+	public ArrayList<P> getList_pai() {
+		return list_pai;
+	}
+
+	public void setList_pai(ArrayList<P> list_pai) {
+		this.list_pai = list_pai;
+	}
+
+	public Context getContext() {
+		return context;
+	}
+
+	public void setContext(Context context) {
+		this.context = context;
+	}
+
+	public TextView getGroupTextView() {
+    	
+        // Layout parameters for the ExpandableListView
+        AbsListView.LayoutParams lp = new AbsListView.LayoutParams(
+            ViewGroup.LayoutParams.FILL_PARENT, 80);
+
+        TextView textView = new TextView(context);
+        textView.setLayoutParams(lp);
+        // Center the text vertically
+        textView.setGravity(Gravity.CENTER_VERTICAL | Gravity.LEFT);
+        // Set the text starting position
+        textView.setPadding(60, 0, 0, 0);
+        textView.setTextSize(23);
+        textView.setTextColor(Color.WHITE);
+        return textView;
+    }
+    
+    public TextView getChildTextView() {
+    	
+        // Layout parameters for the ExpandableListView
+        AbsListView.LayoutParams lp = new AbsListView.LayoutParams(
+            ViewGroup.LayoutParams.FILL_PARENT, 80);
+
+        TextView textView = new TextView(context);
+        textView.setLayoutParams(lp);
+        // Center the text vertically
+        textView.setGravity(Gravity.CENTER_VERTICAL | Gravity.LEFT);
+        // Set the text starting position
+        textView.setPadding(60, 0, 0, 0);
+        textView.setTextSize(22);
+        textView.setTextColor(Color.WHITE);
+        return textView;
+    }
+
+	public Object getChild(int groupPosition, int childPosition) {
+        return list_filho.get(groupPosition).get(childPosition);
+    }
+
+    public long getChildId(int groupPosition, int childPosition) {
+        return childPosition;
+    }
+
+    public int getChildrenCount(int groupPosition) {
+    	return list_filho.get(groupPosition).size();
+    }
+
+    public View getChildView(int groupPosition, int childPosition, boolean isLastChild,
+            View convertView, ViewGroup parent) {
+    	
+        TextView textView = getChildTextView();
+        
+        textView.setText((getChild(groupPosition, childPosition)).toString());
+        
+        return textView;
+    }
+
+    public Object getGroup(int groupPosition) {
+        return list_pai.get(groupPosition);
+    	//return groups[groupPosition];
+    }
+
+    public int getGroupCount() {
+    	return list_pai.size();
+        //return groups.length;
+    }
+
+    public long getGroupId(int groupPosition) {
+        return groupPosition;
+    }
+
+    public View getGroupView(int groupPosition, boolean isExpanded, View convertView,
+            ViewGroup parent) {
+    	
+        TextView textView = getGroupTextView();
+        
+        textView.setText((getGroup(groupPosition)).toString());
+
+        return textView;
+    }
+
+    public boolean isChildSelectable(int groupPosition, int childPosition) {
+        return true;
+    }
+
+    public boolean hasStableIds() {
+        return true;
+    }
+}

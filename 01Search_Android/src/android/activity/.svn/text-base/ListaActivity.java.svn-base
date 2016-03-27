@@ -1,0 +1,487 @@
+package android.activity;
+
+import java.util.ArrayList;
+
+import org.hibernate.criterion.Example;
+
+import layouts.DuploSimplesExpandableListAdapter;
+
+import Modelos.Codigobarras;
+import Modelos.Item;
+import Modelos.ItemLista;
+import Modelos.ItemListaPK;
+import Modelos.Lista;
+import Modelos.ListaUsuario;
+import Modelos.Usuario;
+import android.app.Activity;
+import android.app.Dialog;
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.ContextMenu;
+import android.view.ContextMenu.ContextMenuInfo;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ExpandableListAdapter;
+import android.widget.ExpandableListView;
+import android.widget.ListView;
+import android.widget.TextView;
+import conexao.Conexao;
+import controle.Sessao;
+import controle.Visual.ListaControle;
+
+public class ListaActivity extends Activity {
+
+	private static ListaActivity reference;
+	private ArrayList<Lista> arrayList_Lista;
+	private ListView listView;
+	private ExpandableListView expandableListView;
+	private ArrayAdapter<String> arrayAdapter;
+	private Button button_loginVoltar;
+	private Button button_novaLista;
+	private TextView notificacao;
+	private Lista listaCorrente;
+	private Button button_refresh;
+
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.listas);
+
+		System.out.println();
+		
+		inicializarObjetos();
+		verificarStatusConexao();
+		eventoClickListViewAbrirItemLista();
+		eventoButtonLoginVoltar();
+		eventoButtonNovaLista();
+		eventoButtonRefresh();
+		// eventoButtonAdicionarItem();
+		registerForContextMenu(listView);
+
+	}
+
+	private void inicializarObjetos() {
+
+		button_loginVoltar = (Button) findViewById(R.id.login);
+		button_novaLista = (Button) findViewById(R.id.novaLista);
+
+		notificacao = (TextView) findViewById(R.id.notificacao);
+		button_refresh = (Button) findViewById(R.id.refresh);
+		listView = (ListView) findViewById(R.id.listViewLista);
+		expandableListView = (ExpandableListView) findViewById(R.id.expandableListViewItemLista);
+		reference = this;
+	}
+
+	public void verificarStatusConexao() {
+
+		if (Sessao.isConectado) {
+
+			buscarListaServidor();
+			carregarListas();
+			button_novaLista.setVisibility(View.VISIBLE);
+			button_refresh.setVisibility(View.VISIBLE);
+		} else {
+
+			button_novaLista.setVisibility(View.INVISIBLE);
+			button_refresh.setVisibility(View.INVISIBLE);
+			notificacao.setText("Offline");
+			listView.setAdapter(null);
+		}
+
+	}
+
+	private void buscarListaServidor() {
+		// buscar listas do usuario
+		System.out.println();
+		arrayList_Lista = ListaControle.get().buscarLista(Sessao.usuario);
+	}
+
+	private void carregarListas() {
+
+		// inicializa array adapter
+		arrayAdapter = new ArrayAdapter<String>(this,
+				android.R.layout.simple_list_item_1);
+
+		// adiciona lstas no arrayAdapter
+		for (Lista lista : arrayList_Lista) {
+			arrayAdapter.add(lista.getNome());
+		}
+
+		// adicionar array no listview
+		listView.setAdapter(arrayAdapter);
+	}
+
+	private void eventoButtonRefresh() {
+		button_refresh.setOnClickListener(new OnClickListener() {
+
+			public void onClick(View v) {
+				carregarListas();
+			}
+		});
+	}
+
+	/*
+	 * private void eventoButtonAdicionarItem(){
+	 * button_addItem.setOnClickListener(new OnClickListener(){
+	 * 
+	 * public void onClick(View arg0) { //abrir tela do item Intent intent = new
+	 * Intent();
+	 * 
+	 * int idLista = listaCorrente.getIdLista(); Lista lista = new Lista();
+	 * lista.setIdLista(idLista);
+	 * 
+	 * intent.putExtra("Lista", Conexao.xStream.toXML(lista));
+	 * 
+	 * intent.setClassName("android.activity", "android.activity.ItemActivity");
+	 * 
+	 * startActivityForResult(intent, 1); } }); }
+	 */
+
+	private void eventoButtonNovaLista() {
+		button_novaLista.setOnClickListener(new OnClickListener() {
+
+			public void onClick(View v) {
+
+				// cria o dialogo
+				final Dialog dialog = new Dialog(ListaActivity.this);
+				dialog.setContentView(R.layout.dialo2);
+				dialog.setTitle("Digite o nome da nova lista:");
+				dialog.setCancelable(true);
+
+				// define botoes
+				final EditText nome = (EditText) dialog
+						.findViewById(R.id.editText1);
+
+				Button cancelarr = (Button) dialog
+						.findViewById(R.id.cancelarr2);
+
+				// evento botao cancelar
+				cancelarr.setOnClickListener(new OnClickListener() {
+
+					public void onClick(View v) {
+						dialog.dismiss();
+					}
+				});
+
+				// evento botao OK
+				Button ok = (Button) dialog.findViewById(R.id.ok2);
+				ok.setOnClickListener(new OnClickListener() {
+
+					public void onClick(View v) {
+
+						// definir nova lista
+						Lista lista = new Lista();
+						lista.setNome(nome.getText().toString());
+						lista.setAtivo(true);
+						lista.setVersao(0);
+						lista.getUsuarios().add(Sessao.usuario);
+						Lista l = Conexao.getReference().adicionarLista(lista);
+
+						// adicionar nova lista e carregar na primeira tela
+						arrayList_Lista.add(l);
+						carregarListas();
+
+						// fechar dialogo
+						dialog.dismiss();
+					}
+				});
+
+				// mostrar dialogo na tela
+				dialog.show();
+			}
+		});
+	}
+
+	private void eventoButtonLoginVoltar() {
+
+		button_loginVoltar.setOnClickListener(new OnClickListener() {
+
+			public void onClick(View v) {
+				// ir para tela de login
+				Intent intent = new Intent();
+				intent.setClassName("android.activity",
+						"android.activity.LoginActivity");
+
+				startActivity(intent);
+
+			}
+		});
+	}
+
+	private void eventoClickListViewAbrirItemLista() {
+
+		listView.setOnItemClickListener(new OnItemClickListener() {
+			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
+					long arg3) {
+
+				listaCorrente = arrayList_Lista.get(arg2);
+
+				// carregarItemLista();
+
+				// abrir tela do itemLista
+				Intent intent = new Intent();
+
+				int idLista = listaCorrente.getIdLista();
+				Lista lista = new Lista();
+				lista.setNome(listaCorrente.getNome());
+				lista.setIdLista(idLista);
+
+				intent.putExtra("Lista", Conexao.xStream.toXML(lista));
+
+				intent.setClassName("android.activity",
+						"android.activity.ItemListaActivity");
+
+				startActivityForResult(intent, 1);
+
+			}
+		});
+	}
+
+	/*
+	 * private void irProduto(int position) {
+	 * 
+	 * //buscar codigobarras clicado da lista Codigobarras corrente = Conexao
+	 * .getReference() .buscarCodigobarras(
+	 * String.valueOf(arrayList_ItemLista.get(position)
+	 * .getItemListaPK().getIdItem())).get(0);
+	 * 
+	 * //mudar para tela de produto Intent intent = new Intent();
+	 * 
+	 * intent.setClassName("android.activity",
+	 * "android.activity.CodigobarrasActivity");
+	 * 
+	 * intent.putExtra("codigoBarras", Conexao.xStream.toXML(corrente));
+	 * 
+	 * startActivity(intent); }
+	 */
+
+	/*
+	 * @Override protected void onActivityResult(int requestCode, int
+	 * resultCode, Intent data) { super.onActivityResult(requestCode,
+	 * resultCode, data);
+	 * 
+	 * //1 == itemActivity if(requestCode == 1 && resultCode == RESULT_OK){
+	 * 
+	 * //resultado ItemLista itemLista = (ItemLista)
+	 * Conexao.xStream.fromXML(data.getStringExtra("ItemLista"));
+	 * 
+	 * //adiciona no array arrayList_ItemLista.add(itemLista);
+	 * 
+	 * System.out.println("Item LISTA " + data.getStringExtra("ItemLista"));
+	 * 
+	 * //carregar Lista carregarItemLista(); } }
+	 */
+
+	@Override
+	public void onCreateContextMenu(ContextMenu menu, View v,
+			ContextMenuInfo menuInfo) {
+
+		if (v.getId() == R.id.listViewLista) {
+			ExpandableListView.AdapterContextMenuInfo info = (ExpandableListView.AdapterContextMenuInfo) menuInfo;
+
+			menu.setHeaderTitle(arrayList_Lista.get(info.position).getNome());
+			String[] menuItems = getResources().getStringArray(
+					R.array.menuLista);
+
+			menu.clear();
+			for (int i = 0; i < menuItems.length; i++) {
+				menu.add(Menu.NONE, i, i, menuItems[i]);
+
+				/*
+				 * //segunda tela if (segundaTela) {
+				 * 
+				 * int idItem =
+				 * arrayList_ItemLista.get(info.position).getItemListaPK
+				 * ().getIdItem(); Item item =
+				 * ListaControle.get().buscarItem(idItem);
+				 * 
+				 * menu.setHeaderTitle(item.getNome()); String[] menuItems =
+				 * getResources().getStringArray(R.array.menuItemLista);
+				 * 
+				 * menu.clear(); for (int i = 0; i < menuItems.length; i++) {
+				 * menu.add(Menu.NONE, i, i, menuItems[i]); } }
+				 */
+				/*
+				 * //primeira tela else { }
+				 */
+			}
+		}
+	}
+
+	@Override
+	public boolean onContextItemSelected(MenuItem item) {
+
+		final AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item
+				.getMenuInfo();
+		int menuItemIndex = item.getItemId();
+
+		// Renomear Lista
+		if (menuItemIndex == 0) {
+
+			renomearLista(info.position);
+		}
+
+		// Deletar Lista
+		else if (menuItemIndex == 1) {
+
+			deletarLista(info.position);
+		}
+
+		return true;
+	}
+
+	/*
+	 * private void quantidadeItemLista(final int position) {
+	 * 
+	 * //dialogo final Dialog dialog = new Dialog(ListaActivity.this);
+	 * dialog.setContentView(R.layout.dialo); dialog.setTitle("Quantidade");
+	 * dialog.setCancelable(true);
+	 * 
+	 * final EditText qtd = (EditText) dialog .findViewById(R.id.editText1);
+	 * qtd.setText(String.valueOf(arrayList_ItemLista.get(position)
+	 * .getQuantidade()));
+	 * 
+	 * 
+	 * //cancelar dialogo Button cancelarr = (Button)
+	 * dialog.findViewById(R.id.cancelarr); cancelarr.setOnClickListener(new
+	 * OnClickListener() {
+	 * 
+	 * 
+	 * public void onClick(View v) { dialog.dismiss(); } });
+	 * 
+	 * 
+	 * //confirmar dialogo Button ok = (Button) dialog.findViewById(R.id.ok);
+	 * ok.setOnClickListener(new OnClickListener() {
+	 * 
+	 * 
+	 * public void onClick(View v) {
+	 * 
+	 * try { ItemLista itemLista = arrayList_ItemLista.get(position);
+	 * 
+	 * itemLista.setQuantidade(Integer.parseInt(qtd.getText().toString()));
+	 * 
+	 * Conexao.getReference().atualizarItemLista(itemLista);
+	 * 
+	 * carregarItemLista();
+	 * 
+	 * dialog.dismiss(); } catch (Exception e) { } } });
+	 * 
+	 * 
+	 * //aumentar quantidade Button mais = (Button)
+	 * dialog.findViewById(R.id.btmais); mais.setOnClickListener(new
+	 * OnClickListener() {
+	 * 
+	 * 
+	 * public void onClick(View v) { try {
+	 * qtd.setText(String.valueOf(Integer.parseInt(qtd .getText().toString()) +
+	 * 1)); } catch (Exception e) { qtd.setText("1"); } } });
+	 * 
+	 * 
+	 * //diminuir quatnidade Button menos = (Button)
+	 * dialog.findViewById(R.id.btmenos); menos.setOnClickListener(new
+	 * OnClickListener() {
+	 * 
+	 * 
+	 * public void onClick(View v) { try { if
+	 * (Integer.parseInt(qtd.getText().toString()) - 1 != 0) {
+	 * qtd.setText(String.valueOf(Integer.parseInt(qtd .getText().toString()) -
+	 * 1)); } } catch (Exception e) { qtd.setText("1"); } } });
+	 * 
+	 * dialog.show(); }
+	 * 
+	 * private void deletarItemLista(int position) {
+	 * 
+	 * ItemListaPK itemListaPK = new ItemListaPK();
+	 * itemListaPK.setIdLista(arrayList_ItemLista
+	 * .get(position).getItemListaPK().getIdLista());
+	 * itemListaPK.setIdItem(arrayList_ItemLista
+	 * .get(position).getItemListaPK().getIdItem());
+	 * 
+	 * ItemLista itemLista = new ItemLista();
+	 * itemLista.setItemListaPK(itemListaPK);
+	 * 
+	 * //remove do servidor Conexao.getReference().removerItemLista(itemLista);
+	 * 
+	 * //remove do array arrayList_ItemLista.remove(position);
+	 * 
+	 * //carrega array carregarItemLista(); }
+	 */
+	
+	private void renomearLista(final int position) {
+
+		// Dialogo para mudar nome da lista
+		final Dialog dialog = new Dialog(ListaActivity.this);
+		dialog.setContentView(R.layout.dialo2);
+		dialog.setTitle("Renomear " + arrayList_Lista.get(position).getNome()
+				+ ":");
+		dialog.setCancelable(true);
+
+		final EditText nome = (EditText) dialog.findViewById(R.id.editText1);
+
+		nome.setText(arrayList_Lista.get(position).getNome());
+
+		// botao cancelar para mudar o nome da lista
+		Button cancelarr = (Button) dialog.findViewById(R.id.cancelarr2);
+		cancelarr.setOnClickListener(new OnClickListener() {
+
+			public void onClick(View v) {
+				dialog.dismiss();
+			}
+		});
+
+		// botao ok para mudar o nome da lista
+		Button ok = (Button) dialog.findViewById(R.id.ok2);
+		ok.setOnClickListener(new OnClickListener() {
+
+			// atualizar nome da lista
+			public void onClick(View v) {
+
+				// alterar no servidor e na lista
+				Lista lista = arrayList_Lista.get(position);
+				lista.setNome(nome.getText().toString());
+
+				Conexao.getReference().atualizarLista(lista);
+
+				carregarListas();
+
+				dialog.dismiss();
+			}
+		});
+
+		dialog.show();
+	}
+
+	private void deletarLista(int position) {
+
+		Lista lista = new Lista();
+		lista.setIdLista(arrayList_Lista.get(position).getIdLista());
+
+		Usuario usuario = new Usuario();
+		usuario.setIdUsuario(Sessao.usuario.getIdUsuario());
+
+		ListaUsuario listaUsuario = new ListaUsuario();
+		listaUsuario.setLista(lista);
+		listaUsuario.setUsuario(usuario);
+
+		// deletar ListaUsuario
+		Conexao.getReference().removerListaUsuario(listaUsuario);
+
+		arrayList_Lista.remove(position);
+
+		// recarregar lista
+		carregarListas();
+	}
+
+	public static ListaActivity getReference() {
+		return reference;
+	}
+
+}

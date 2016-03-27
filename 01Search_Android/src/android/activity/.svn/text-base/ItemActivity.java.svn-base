@@ -1,0 +1,312 @@
+package android.activity;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import layouts.DuploSimplesExpandableListAdapter;
+
+import conexao.Conexao;
+import controle.Sessao;
+import controle.Visual.ItemControle;
+import controle.Visual.ListaControle;
+import Modelos.Codigobarras;
+import Modelos.Item;
+import Modelos.ItemLista;
+import Modelos.ItemListaPK;
+import Modelos.Lista;
+import Modelos.UnidadeMedida;
+import Modelos.Usuario;
+import Modelos.UsuarioItem;
+import android.app.Activity;
+import android.app.Dialog;
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.ContextMenu;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.ContextMenu.ContextMenuInfo;
+import android.view.View.OnClickListener;
+import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ExpandableListAdapter;
+import android.widget.ExpandableListView;
+import android.widget.ImageView;
+
+public class ItemActivity extends Activity{
+	
+	//private TextView informacao;
+	//private Button button_criar;
+	private ExpandableListView expandablelistView_Itens;
+	private ArrayList<Item> arrayList_Item;
+	private ImageView botaoAdd;
+	private EditText campoBusca;
+	private Lista lista = new Lista();
+	private Intent intent;
+	ArrayList<ArrayList<Codigobarras>> codigobarras;
+	
+	@Override
+	public void onCreate(Bundle savedInstanceState){
+	
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.itens);
+		
+		inicializarObjetos();
+		verificarStatusConexao();
+		//eventoButtonCriar();
+		
+	}
+	
+	private void inicializarObjetos(){
+		//informacao = (TextView) findViewById(R.id.textViewInfo);
+		//button_criar = (Button) findViewById(R.id.criar);
+		expandablelistView_Itens = (ExpandableListView) findViewById(R.id.expandableListViewItens);
+		campoBusca = (EditText) findViewById(R.id.editTextItens);
+		botaoAdd = (ImageView) findViewById(R.id.imageViewItens);
+		arrayList_Item = new ArrayList<Item>();
+		intent = getIntent();
+		lista = (Lista) Conexao.xStream.fromXML(getIntent().getStringExtra("Lista"));
+		codigobarras = new ArrayList<ArrayList<Codigobarras>>();
+	}
+
+	public void verificarStatusConexao() {
+		
+		if (Sessao.isConectado) {
+			
+			buscarItensServidor();
+			carregarItens();
+		}
+		else{
+			
+		}
+	}
+	
+	private void buscarItensServidor() {
+
+		//itens do usuario com codigosbarras atrelados
+		arrayList_Item = Conexao.getReference().buscarItem(Sessao.usuario);
+		codigobarras = ItemControle.get().buscarCodigobarras(arrayList_Item);
+
+	}
+
+	private void carregarItens() {
+				
+        //adapter da lista
+        DuploSimplesExpandableListAdapter<Item, Codigobarras> customExpandableListAdapter = 
+        		new DuploSimplesExpandableListAdapter<Item, Codigobarras>();
+        customExpandableListAdapter.setContext(ItemActivity.this);
+        customExpandableListAdapter.setList_pai(arrayList_Item);
+        customExpandableListAdapter.setList_filho(codigobarras);
+       
+        ExpandableListAdapter mAdapter = customExpandableListAdapter;
+        expandablelistView_Itens.setAdapter(mAdapter);
+        registerForContextMenu(expandablelistView_Itens);
+	
+	}
+	
+	/*
+	private void eventoButtonCriar(){
+		
+		button_criar.setOnClickListener(new OnClickListener(){
+
+			public void onClick(View v) {
+				
+				//dialogo
+				final Dialog dialog = new Dialog(ItemActivity.this);
+				dialog.setContentView(R.layout.dialo2);
+				dialog.setTitle("Digite o nome do novo item:");
+				dialog.setCancelable(true);
+
+				final EditText nome = (EditText) dialog
+						.findViewById(R.id.editText1);
+
+				Button cancelarr = (Button) dialog
+						.findViewById(R.id.cancelarr2);
+
+				//cancelar dialogo
+				cancelarr.setOnClickListener(new OnClickListener() {
+
+					 
+					public void onClick(View v) {
+						dialog.dismiss();
+					}
+				});
+
+				
+				//confirmar dialogo
+				Button ok = (Button) dialog.findViewById(R.id.ok2);
+				ok.setOnClickListener(new OnClickListener() {
+
+					 
+					public void onClick(View v) {
+
+						
+						Item item = new Item();
+						List<Usuario> usuario = new ArrayList<Usuario>();
+						usuario.add(Sessao.usuario);
+						item.setUsuarios(usuario);
+						item.setNome(nome.getText().toString());
+						
+						Item i = Conexao.getReference().adicionarItem(item);
+
+						arrayList_Item.add(i);
+						carregarItens();
+
+						dialog.dismiss();
+					}
+				});
+
+				dialog.show();
+			}
+		});
+	}*/
+	
+	@Override
+	public void onCreateContextMenu(ContextMenu menu, View v,
+			ContextMenuInfo menuInfo) {
+			
+			AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) menuInfo;
+			
+			//colocar o item como nome do menu
+			menu.setHeaderTitle(arrayList_Item.get(info.position).getNome());
+			
+			//busca opcoes
+			String[] menuItems = getResources().getStringArray(
+					R.array.menuItem);
+
+			menu.clear();
+			//define opcoes
+			for (int i = 0; i < menuItems.length; i++) {
+				menu.add(Menu.NONE, i, i, menuItems[i]);
+			}
+	}
+	
+	@Override
+	public boolean onContextItemSelected(MenuItem menuItem) {
+		
+		final AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) menuItem.getMenuInfo();
+		int menuItemIndex = menuItem.getItemId();
+			
+		//Adicionar Item
+		if (menuItemIndex == 0) {
+			
+			adicionarItem(info.position);
+		} 
+		
+		//Renomear Item
+		else if (menuItemIndex == 1) {
+				
+			renomearItem(info.position);	
+		}
+			
+		//deletar Item
+		else if (menuItemIndex == 2){
+		
+			deletarItem(info.position);
+		}
+
+		return true;
+	}
+
+	private void adicionarItem(int position) {
+		
+		int idItem = arrayList_Item.get(position).getIdItem();
+		int idLista = lista.getIdLista();
+		UnidadeMedida unidadeMedida = new UnidadeMedida();
+		unidadeMedida.setIdUnidade(1);
+		
+		ItemListaPK itemListaPK = new ItemListaPK();
+		itemListaPK.setIdItem(idItem);
+		itemListaPK.setIdLista(idLista);
+
+		ItemLista itemLista = new ItemLista();
+		itemLista.setItemListaPK(itemListaPK);
+		itemLista.setQuantidade(1);
+		itemLista.setAtivo(true);
+		
+		//adicionar Itemlista
+		Conexao.getReference().adicionarItemLista(itemLista);
+		
+		//informacoes do item
+		Item item = new Item();
+		item.setIdItem(arrayList_Item.get(position).getIdItem());
+		item.setNome(arrayList_Item.get(position).getNome());
+		item.setPeriodicidade(arrayList_Item.get(position).getPeriodicidade());
+		item.setValidade(arrayList_Item.get(position).getValidade());
+		
+		//retornar resultado para listaActivity
+		intent.putExtra("ItemLista", Conexao.xStream.toXML(itemLista));
+		setResult(RESULT_OK, intent);
+	}
+
+	private void renomearItem(final int position) {
+
+		//Dialogo para mudar nome da Item
+		final Dialog dialog = new Dialog(ItemActivity.this);
+		dialog.setContentView(R.layout.dialo2);
+		dialog.setTitle("Renomear "
+				+ arrayList_Item.get(position).getNome() + ":");
+		dialog.setCancelable(true);
+
+		final EditText nome = (EditText) dialog
+				.findViewById(R.id.editText1);
+
+		nome.setText(arrayList_Item.get(position).getNome());
+
+		
+		//botao cancelar para mudar o nome da Item
+		Button cancelarr = (Button) dialog
+				.findViewById(R.id.cancelarr2);
+		cancelarr.setOnClickListener(new OnClickListener() {
+
+		public void onClick(View v) {
+				dialog.dismiss();
+		}
+		});
+		
+
+		//botao ok para mudar o nome da Item
+		Button ok = (Button) dialog.findViewById(R.id.ok2);
+		ok.setOnClickListener(new OnClickListener() {
+
+			//atualizar nome da Item
+			public void onClick(View v) {
+				
+				//alterar no servidor e na Item
+				Item item = arrayList_Item.get(position);
+				item.setNome(nome.getText().toString());
+
+				Conexao.getReference().atualizarItem(item);
+
+				carregarItens();
+
+				dialog.dismiss();
+			}
+		});
+
+		dialog.show();
+	}
+
+	private void deletarItem(int position) {
+
+		
+		Item item = new Item();
+		item.setIdItem(arrayList_Item.get(position).getIdItem());
+		Usuario usuario = new Usuario();
+		usuario.setIdUsuario(Sessao.usuario.getIdUsuario());
+			
+
+		UsuarioItem usuarioItem = new UsuarioItem();
+		usuarioItem.setItem(item);
+		usuarioItem.setUsuario(usuario);
+		Conexao.getReference().removerUsuarioItem(usuarioItem);
+		
+		arrayList_Item.remove(position);
+		
+		//recarregar itens
+		carregarItens();
+		
+	}
+	
+}

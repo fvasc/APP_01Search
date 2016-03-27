@@ -1,0 +1,182 @@
+package layouts;
+
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.concurrent.ExecutionException;
+
+import Modelos.Codigobarras;
+import Modelos.Estabelecimento;
+import Modelos.ItemLista;
+import android.activity.R;
+import android.content.Context;
+import android.graphics.Color;
+import android.view.Gravity;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.ViewGroup;
+import android.widget.AbsListView;
+import android.widget.BaseExpandableListAdapter;
+import android.widget.Button;
+import android.widget.TextView;
+
+public class ItemListaExpandableListAdapter extends BaseExpandableListAdapter {
+
+	private static final String TAG = "CustomExpandableListAdapter";
+	private ArrayList<ItemLista> list_pai;
+	private ArrayList<ArrayList<Codigobarras>> list_filho;
+	private Context context;
+	private int quantidadePai;
+	private Estabelecimento estabelecimento;
+
+	public ItemListaExpandableListAdapter(Context context,
+			ArrayList<ItemLista> list_pai,
+			ArrayList<ArrayList<Codigobarras>> list_filho,
+			Estabelecimento estabelecimento) {
+		this.context = context;
+		this.list_pai = list_pai;
+		this.list_filho = list_filho;
+		this.estabelecimento = estabelecimento;
+	}
+
+	public Estabelecimento getEstabelecimento() {
+		return estabelecimento;
+	}
+
+	public void setEstabelecimento(Estabelecimento estabelecimento) {
+		this.estabelecimento = estabelecimento;
+	}
+
+	public ItemListaExpandableListAdapter() {
+	}
+
+	public ArrayList<ArrayList<Codigobarras>> getList_filho() {
+		return list_filho;
+	}
+
+	public void setList_filho(ArrayList<ArrayList<Codigobarras>> list_filho) {
+		this.list_filho = list_filho;
+	}
+
+	public ArrayList<ItemLista> getList_pai() {
+		return list_pai;
+	}
+
+	public void setList_pai(ArrayList<ItemLista> list_pai) {
+		this.list_pai = list_pai;
+	}
+
+	public Context getContext() {
+		return context;
+	}
+
+	public void setContext(Context context) {
+		this.context = context;
+	}
+
+	public Object getChild(int groupPosition, int childPosition) {
+		return list_filho.get(groupPosition).get(childPosition);
+	}
+
+	public long getChildId(int groupPosition, int childPosition) {
+		return childPosition;
+	}
+
+	public int getChildrenCount(int groupPosition) {
+		return list_filho.get(groupPosition).size();
+	}
+
+	public Object getGroup(int groupPosition) {
+		return list_pai.get(groupPosition);
+		// return groups[groupPosition];
+	}
+
+	public int getGroupCount() {
+		return list_pai.size();
+		// return groups.length;
+	}
+
+	public long getGroupId(int groupPosition) {
+		return groupPosition;
+	}
+
+	public View getChildView(int groupPosition, int childPosition,
+			boolean isLastChild, View convertView, ViewGroup parent) {
+
+		LayoutInflater infalter = LayoutInflater.from(context);
+		convertView = infalter.inflate(R.layout.itemlista_linhafilho, null);
+
+		Codigobarras codigobarras = (Codigobarras) getChild(groupPosition,
+				childPosition);
+
+		((TextView) convertView.findViewById(R.id.linhafilho_codigobarras))
+				.setText(codigobarras.getNome());
+
+		((TextView) convertView.findViewById(R.id.linhafilho_preco))
+				.setText("R$ "
+						+ codigobarras.getPrecoCorrente()
+								.setScale(2, BigDecimal.ROUND_HALF_UP)
+								.toString());
+
+		((TextView) convertView.findViewById(R.id.linhafilho_quantidade))
+				.setText(codigobarras.getQtdComprada().toString());
+
+		// escurecer fundo
+		convertView.getBackground().setAlpha(100);
+
+		return convertView;
+	}
+
+	public View getGroupView(int groupPosition, boolean isExpanded,
+			View convertView, ViewGroup parent) {
+
+		LayoutInflater infalter = LayoutInflater.from(context);
+		convertView = infalter.inflate(R.layout.itemlista_linhapai, null);
+
+		ItemLista itemLista = (ItemLista) getGroup(groupPosition);
+
+		((TextView) convertView.findViewById(R.id.linhapai_item))
+				.setText(itemLista.getItem().getNome());
+
+		// tratar falta de dados
+		try {
+
+			((TextView) convertView.findViewById(R.id.linhapai_quantidade))
+					.setText(itemLista.getQtdComprada() + "");
+			quantidadePai = itemLista.getQtdComprada();
+
+		} catch (Exception e) {
+
+			((TextView) convertView.findViewById(R.id.linhapai_quantidade))
+					.setText("0");
+			quantidadePai = 0;
+
+		}
+
+		// soma o itemlista com os codigobarras
+		int somaQtds = somarQuantidades(groupPosition);
+
+		((TextView) convertView.findViewById(R.id.linhapai_comprado))
+				.setText(somaQtds + "/" + itemLista.getQuantidade());
+
+		return convertView;
+	}
+
+	private int somarQuantidades(int groupPosition) {
+
+		int qtdCodigobarras = 0;
+
+		for (Codigobarras codigobarras : list_filho.get(groupPosition)) {
+			qtdCodigobarras += codigobarras.getQtdComprada();
+		}
+		return (quantidadePai + qtdCodigobarras);
+	}
+
+	public boolean isChildSelectable(int groupPosition, int childPosition) {
+		return true;
+	}
+
+	public boolean hasStableIds() {
+		return true;
+	}
+}

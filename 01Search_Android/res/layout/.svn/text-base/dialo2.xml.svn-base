@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical" android:layout_width="fill_parent"
+	android:layout_height="fill_parent" android:weightSum="1">
+	<EditText android:id="@+id/editText1" android:layout_width="fill_parent" android:layout_height="wrap_content">
+		<requestFocus></requestFocus>
+	</EditText>
+	<RelativeLayout android:id="@+id/relativeLayout3"
+		android:layout_width="fill_parent" android:layout_height="wrap_content">
+		<RelativeLayout android:layout_width="fill_parent"
+			android:id="@+id/relativeLayout2" android:layout_height="wrap_content"
+			android:gravity="center" android:layout_alignParentTop="true"
+			android:layout_alignParentLeft="true" android:layout_marginTop="23dp">
+			<Button android:layout_height="wrap_content"
+				android:layout_width="72dp" android:text="OK"
+				android:layout_alignParentLeft="true" android:id="@+id/ok2"></Button>
+			<Button android:layout_width="wrap_content" android:id="@+id/cancelarr2" android:text="Cancelar" android:layout_height="wrap_content" android:layout_alignParentTop="true" android:layout_toRightOf="@+id/ok2" android:layout_marginLeft="20dp"></Button>
+		</RelativeLayout>
+	</RelativeLayout>
+
+</LinearLayout>

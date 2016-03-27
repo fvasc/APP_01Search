@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:orientation="vertical"
+  android:layout_width="fill_parent"
+  android:layout_height="fill_parent">
+    <RelativeLayout android:id="@+id/relativeLayout1" android:layout_width="fill_parent" android:gravity="top" android:layout_height="fill_parent" android:background="@drawable/fundo">
+        <ImageView android:layout_alignTop="@+id/loginFacebook" android:layout_marginRight="48dp" android:layout_alignParentRight="true" android:src="@drawable/twitter" android:layout_width="75dp" android:layout_height="75dp" android:id="@+id/loginTwitter"></ImageView>
+        <ImageView android:layout_toLeftOf="@+id/loginTwitter" android:layout_marginTop="36dp" android:src="@drawable/google" android:layout_width="75dp" android:layout_below="@+id/loginFacebook" android:layout_height="75dp" android:id="@+id/loginGoogle"></ImageView>
+        <ImageView android:layout_toLeftOf="@+id/loginGoogle" android:layout_marginTop="41dp" android:src="@drawable/facebook" android:layout_width="75dp" android:layout_below="@+id/textView1" android:layout_height="75dp" android:id="@+id/loginFacebook"></ImageView>
+        <TextView android:layout_alignParentTop="true" android:layout_marginTop="213dp" android:id="@+id/textView1" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textAppearance="?android:attr/textAppearanceLarge" android:layout_alignParentLeft="true" android:text="Escolha um rede para login:"></TextView>
+        <TextView android:layout_marginBottom="20dp" android:layout_height="wrap_content" android:gravity="center_horizontal|center|clip_vertical" android:textAppearance="?android:attr/textAppearanceLarge" android:layout_alignParentLeft="true" android:text="Você está conectado como 'Nathan Santos'" android:id="@+id/conexao" android:layout_above="@+id/sair" android:layout_width="fill_parent"></TextView>
+        <Button android:text="Sair" android:layout_marginBottom="46dp" android:layout_width="100px" android:layout_height="wrap_content" android:layout_alignBottom="@+id/textView1" android:gravity="center_horizontal|center" android:layout_centerHorizontal="true" android:id="@+id/sair"></Button>
+        <ImageView android:src="@drawable/twitterlogo" android:layout_width="wrap_content" android:layout_height="60px" android:id="@+id/logo" android:layout_alignParentTop="true" android:layout_alignParentLeft="true" android:layout_marginTop="16dp"></ImageView>
+    </RelativeLayout>
+    
+</LinearLayout>

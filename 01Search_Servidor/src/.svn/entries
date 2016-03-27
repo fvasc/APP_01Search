@@ -1,0 +1,74 @@
+9
+
+dir
+13538
+https://fw.lab.sp.cefetsp.br/svn/a6pgp/A2012-PDS/DeusNinjaDoCotopete/01Search_Servidor/src
+https://fw.lab.sp.cefetsp.br/svn/a6pgp
+
+
+
+2012-10-26T00:30:25.977191Z
+12195
+sp0951242
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+72fe1d9a-8248-0410-b756-cde062451638
+
+ControleJPA
+dir
+
+META-INF
+dir
+
+Modelos
+dir
+
+Principal
+dir
+
+log4j.properties
+file
+
+
+
+
+2012-09-20T22:16:38.729000Z
+c23a9b4527c3ae641634ad20353c5b47
+2012-05-17T22:48:01.482801Z
+6988
+sp0951749
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+223
+

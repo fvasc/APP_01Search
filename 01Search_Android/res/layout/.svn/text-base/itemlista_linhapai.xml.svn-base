@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="80dp"
+    android:orientation="horizontal" >
+
+    <TextView
+        android:id="@+id/linhapai_item"
+        android:layout_width="180dp"
+        android:layout_height="40dp"
+        android:ellipsize="end"
+        android:gravity="center_vertical"
+        android:paddingLeft="35dip"
+        android:singleLine="true"
+        android:text="paralelepipedo"
+        android:textColor="@android:color/white"
+        android:textSize="22dp" />
+
+    <RelativeLayout
+        android:layout_width="40dp"
+        android:layout_height="40dp" >
+
+        <TextView
+            android:id="@+id/linhapai_quantidade"
+            android:layout_width="55dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentTop="true"
+            android:gravity="right|center_vertical"
+            android:text="343"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="#07b22c"
+            android:textSize="20dp"
+            android:width="40dp" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="40dp" >
+
+        <TextView
+            android:id="@+id/linhapai_comprado"
+            android:layout_width="fill_parent"
+            android:layout_height="23dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentTop="true"
+            android:gravity="right|center_vertical"
+            android:paddingRight="10dp"
+            android:text="/235"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="#ff6347"
+            android:textSize="20dp" />
+
+    </RelativeLayout>
+
+</LinearLayout>

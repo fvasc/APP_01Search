@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="hello">Hello World, TesteActivity!</string>
+    <string name="app_name">01 Search</string>
+    <string name="footer">This is a demo of the ListView. Click and hold on to one of the items above to show the context menu.</string>
+    <string-array name="menuItemListaPai">
+        <item>Quantidade comprada</item>
+        <item>Quantidade da lista</item>
+        <item>Excluir</item>
+        <item>Voltar</item>
+    </string-array>
+     <string-array name="menuItemListaFilho">
+        <item>Quantidade comprada</item>
+        <item>Excluir</item>
+        <item>Voltar</item>
+    </string-array>
+    <string-array name="menuLista">
+        <item>Renomear</item>
+        <item>Excluir</item>
+        <item>Voltar</item>
+    </string-array>
+    <string-array name="menuItem">
+        <item>Adicionar</item>
+        <item>Renomear</item>
+        <item>Excluir</item>
+        <item>Voltar</item>
+    </string-array>
+</resources>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry exported="true" kind="lib" path="/01Search_Conexao/bin"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="/Bibliotecas/Android/hibernate-core-4.0.0.CR3.jar"/>
+	<classpathentry kind="lib" path="/Bibliotecas/Android/HibernateCollectionConverter.jar"/>
+	<classpathentry kind="lib" path="/Bibliotecas/Android/httpclient-4.0.1.jar"/>
+	<classpathentry kind="lib" path="/Bibliotecas/Android/ksoap2-android-assembly-2.5.7-jar-with-dependencies.jar"/>
+	<classpathentry kind="lib" path="/Bibliotecas/Android/signpost-commonshttp4-1.2.1.1.jar"/>
+	<classpathentry kind="lib" path="/Bibliotecas/Android/signpost-core-1.2.1.1.jar"/>
+	<classpathentry kind="lib" path="/Bibliotecas/Android/twitter4j-core-2.1.11.jar"/>
+	<classpathentry kind="lib" path="/Bibliotecas/Android/xstream-1.4.1.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

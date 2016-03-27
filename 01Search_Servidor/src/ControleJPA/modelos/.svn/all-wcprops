@@ -1,0 +1,77 @@
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/a6pgp/!svn/ver/12195/A2012-PDS/DeusNinjaDoCotopete/01Search_Servidor/src/ControleJPA/modelos
+END
+Subdepartamento_JPA.java
+K 25
+svn:wc:ra_dav:version-url
+V 121
+/svn/a6pgp/!svn/ver/9947/A2012-PDS/DeusNinjaDoCotopete/01Search_Servidor/src/ControleJPA/modelos/Subdepartamento_JPA.java
+END
+Departamento_JPA.java
+K 25
+svn:wc:ra_dav:version-url
+V 119
+/svn/a6pgp/!svn/ver/12195/A2012-PDS/DeusNinjaDoCotopete/01Search_Servidor/src/ControleJPA/modelos/Departamento_JPA.java
+END
+Lista_JPA.java
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/svn/a6pgp/!svn/ver/11778/A2012-PDS/DeusNinjaDoCotopete/01Search_Servidor/src/ControleJPA/modelos/Lista_JPA.java
+END
+Item_JPA.java
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/svn/a6pgp/!svn/ver/13539/A2012-PDS/DeusNinjaDoCotopete/01Search_Servidor/src/ControleJPA/modelos/Item_JPA.java
+END
+UsuarioItem_JPA.java
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/svn/a6pgp/!svn/ver/13539/A2012-PDS/DeusNinjaDoCotopete/01Search_Servidor/src/ControleJPA/modelos/UsuarioItem_JPA.java
+END
+ItemLista_JPA.java
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/svn/a6pgp/!svn/ver/13539/A2012-PDS/DeusNinjaDoCotopete/01Search_Servidor/src/ControleJPA/modelos/ItemLista_JPA.java
+END
+Estabelecimentos_JPA.java
+K 25
+svn:wc:ra_dav:version-url
+V 123
+/svn/a6pgp/!svn/ver/13539/A2012-PDS/DeusNinjaDoCotopete/01Search_Servidor/src/ControleJPA/modelos/Estabelecimentos_JPA.java
+END
+HistoricoPreco_JPA.java
+K 25
+svn:wc:ra_dav:version-url
+V 121
+/svn/a6pgp/!svn/ver/12189/A2012-PDS/DeusNinjaDoCotopete/01Search_Servidor/src/ControleJPA/modelos/HistoricoPreco_JPA.java
+END
+Usuario_JPA.java
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/svn/a6pgp/!svn/ver/9947/A2012-PDS/DeusNinjaDoCotopete/01Search_Servidor/src/ControleJPA/modelos/Usuario_JPA.java
+END
+Marca_JPA.java
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/svn/a6pgp/!svn/ver/9706/A2012-PDS/DeusNinjaDoCotopete/01Search_Servidor/src/ControleJPA/modelos/Marca_JPA.java
+END
+Codigobarras_JPA.java
+K 25
+svn:wc:ra_dav:version-url
+V 119
+/svn/a6pgp/!svn/ver/13539/A2012-PDS/DeusNinjaDoCotopete/01Search_Servidor/src/ControleJPA/modelos/Codigobarras_JPA.java
+END
+Produto_JPA.java
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/svn/a6pgp/!svn/ver/13539/A2012-PDS/DeusNinjaDoCotopete/01Search_Servidor/src/ControleJPA/modelos/Produto_JPA.java
+END

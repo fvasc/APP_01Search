@@ -1,0 +1,155 @@
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/a6pgp/!svn/ver/12195/A2012-PDS/DeusNinjaDoCotopete/01Search_Servidor/src/Modelos
+END
+Historico.java
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/a6pgp/!svn/ver/13539/A2012-PDS/DeusNinjaDoCotopete/01Search_Servidor/src/Modelos/Historico.java
+END
+ItemLista.java
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/a6pgp/!svn/ver/13539/A2012-PDS/DeusNinjaDoCotopete/01Search_Servidor/src/Modelos/ItemLista.java
+END
+Usuario.java
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/a6pgp/!svn/ver/9946/A2012-PDS/DeusNinjaDoCotopete/01Search_Servidor/src/Modelos/Usuario.java
+END
+ListaUsuario.java
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/a6pgp/!svn/ver/12195/A2012-PDS/DeusNinjaDoCotopete/01Search_Servidor/src/Modelos/ListaUsuario.java
+END
+ItemListaPK.java
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/a6pgp/!svn/ver/13539/A2012-PDS/DeusNinjaDoCotopete/01Search_Servidor/src/Modelos/ItemListaPK.java
+END
+HistoricoPK.java
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/a6pgp/!svn/ver/13539/A2012-PDS/DeusNinjaDoCotopete/01Search_Servidor/src/Modelos/HistoricoPK.java
+END
+Codigobarras.java
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/a6pgp/!svn/ver/13539/A2012-PDS/DeusNinjaDoCotopete/01Search_Servidor/src/Modelos/Codigobarras.java
+END
+Login.java
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/a6pgp/!svn/ver/9869/A2012-PDS/DeusNinjaDoCotopete/01Search_Servidor/src/Modelos/Login.java
+END
+UnidadeMedida.java
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/a6pgp/!svn/ver/11778/A2012-PDS/DeusNinjaDoCotopete/01Search_Servidor/src/Modelos/UnidadeMedida.java
+END
+Departamento.java
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/a6pgp/!svn/ver/12195/A2012-PDS/DeusNinjaDoCotopete/01Search_Servidor/src/Modelos/Departamento.java
+END
+Subdepartamento.java
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/a6pgp/!svn/ver/12189/A2012-PDS/DeusNinjaDoCotopete/01Search_Servidor/src/Modelos/Subdepartamento.java
+END
+Lista.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/a6pgp/!svn/ver/13539/A2012-PDS/DeusNinjaDoCotopete/01Search_Servidor/src/Modelos/Lista.java
+END
+UsuarioItem.java
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/a6pgp/!svn/ver/13539/A2012-PDS/DeusNinjaDoCotopete/01Search_Servidor/src/Modelos/UsuarioItem.java
+END
+Conversao.java
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/a6pgp/!svn/ver/9869/A2012-PDS/DeusNinjaDoCotopete/01Search_Servidor/src/Modelos/Conversao.java
+END
+HistoricoPreco.java
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/a6pgp/!svn/ver/12189/A2012-PDS/DeusNinjaDoCotopete/01Search_Servidor/src/Modelos/HistoricoPreco.java
+END
+UnidadeMedida.java.svntmp
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/svn/a6pgp/!svn/ver/9946/A2012-PDS/DeusNinjaDoCotopete/01Search_Servidor/src/Modelos/UnidadeMedida.java.svntmp
+END
+CodigobarrasItem.java
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/a6pgp/!svn/ver/13539/A2012-PDS/DeusNinjaDoCotopete/01Search_Servidor/src/Modelos/CodigobarrasItem.java
+END
+Marca.java
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/a6pgp/!svn/ver/9869/A2012-PDS/DeusNinjaDoCotopete/01Search_Servidor/src/Modelos/Marca.java
+END
+UsuarioItemPK.java
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/a6pgp/!svn/ver/13539/A2012-PDS/DeusNinjaDoCotopete/01Search_Servidor/src/Modelos/UsuarioItemPK.java
+END
+HistoricoPrecoPK.java
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/a6pgp/!svn/ver/12189/A2012-PDS/DeusNinjaDoCotopete/01Search_Servidor/src/Modelos/HistoricoPrecoPK.java
+END
+Produto.java
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/a6pgp/!svn/ver/13539/A2012-PDS/DeusNinjaDoCotopete/01Search_Servidor/src/Modelos/Produto.java
+END
+CodigobarrasItemPK.java
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svn/a6pgp/!svn/ver/13539/A2012-PDS/DeusNinjaDoCotopete/01Search_Servidor/src/Modelos/CodigobarrasItemPK.java
+END
+Estabelecimento.java
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/a6pgp/!svn/ver/13539/A2012-PDS/DeusNinjaDoCotopete/01Search_Servidor/src/Modelos/Estabelecimento.java
+END
+ProdutoPK.java
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/a6pgp/!svn/ver/8201/A2012-PDS/DeusNinjaDoCotopete/01Search_Servidor/src/Modelos/ProdutoPK.java
+END
+Item.java
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/a6pgp/!svn/ver/9946/A2012-PDS/DeusNinjaDoCotopete/01Search_Servidor/src/Modelos/Item.java
+END

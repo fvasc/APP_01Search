@@ -1,0 +1,152 @@
+package android.activity;
+
+import java.util.ArrayList;
+
+import conexao.Conexao;
+import Modelos.Codigobarras;
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.net.Uri;
+import android.os.Bundle;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.ListView;
+
+public class BuscaActivity extends Activity {
+
+	private ArrayList<Codigobarras> listaProdutos;
+	private ArrayAdapter<String> lits;
+	private EditText campoPesquisa;
+	private ImageView limpar;
+
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.buscar);
+
+		campoPesquisa = (EditText) findViewById(R.id.editText1);
+		limpar = (ImageView) findViewById(R.id.limpar);
+
+		ImageView botao = (ImageView) findViewById(R.id.button1);
+
+		botao.setOnClickListener(new View.OnClickListener() {
+
+			public void onClick(View v) {
+
+				//abaixar teclado
+				InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+				imm.hideSoftInputFromWindow(campoPesquisa.getWindowToken(), 0);
+				
+				if (!campoPesquisa.getText().toString().equals("")) {
+					listaProdutos = Conexao.getReference().buscarCodigobarras(campoPesquisa.getText().toString());
+
+					lits.clear();
+					for (Codigobarras produto : listaProdutos) {
+						lits.add(produto.getNome());
+					}
+				}
+			}
+		});
+
+		Button botao2 = (Button) findViewById(R.id.button2);
+
+		botao2.setOnClickListener(new View.OnClickListener() {
+
+			public void onClick(View v) {
+
+				try {
+					Intent intent = new Intent(
+							"com.google.zxing.client.android.SCAN");
+					intent.setPackage("com.google.zxing.client.android");
+				
+					startActivityForResult(intent, 0);
+
+				} catch (Exception e) {
+
+					DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+						public void onClick(DialogInterface dialog, int which) {
+							switch (which) {
+							case DialogInterface.BUTTON_POSITIVE:
+								Intent intent = new Intent(Intent.ACTION_VIEW);
+								intent.setData(Uri
+										.parse("market://details?id=com.google.zxing.client.android"));
+								startActivity(intent);
+								break;
+
+							case DialogInterface.BUTTON_NEGATIVE:
+								break;
+							}
+						}
+					};
+
+					AlertDialog.Builder dialog = new AlertDialog.Builder(
+							BuscaActivity.this);
+					dialog.setTitle("Aviso");
+
+					dialog.setPositiveButton("Sim", dialogClickListener);
+					dialog.setNegativeButton("N�o", dialogClickListener);
+
+					dialog.setMessage("Voc� n�o possui o programa 'Barcode Scanner'. Deseja baix�-lo?");
+
+					dialog.show();
+
+				}
+			}
+		});
+
+		ListView lista = (ListView) findViewById(R.id.listView1);
+
+		lits = new ArrayAdapter<String>(this,
+				android.R.layout.simple_list_item_1);
+		lista.setAdapter(lits);
+
+		lista.setOnItemClickListener(new OnItemClickListener() {
+
+			public void onItemClick(AdapterView<?> arg0, View arg1, int pos,
+					long id) {
+
+				Intent intent = new Intent();
+
+				intent.setClassName("android.activity", "android.activity.CodigobarrasActivity");
+
+				String codigobarras = Conexao.xStream.toXML(listaProdutos.get(pos));
+
+				intent.putExtra("Codigobarras", String.valueOf(codigobarras));
+
+				startActivity(intent);
+			}
+		});
+
+		limpar.setOnClickListener(new OnClickListener() {
+
+			public void onClick(View v) {
+				campoPesquisa.setText("");
+				lits.clear();
+			}
+		});
+
+	}
+
+	public void onActivityResult(int requestCode, int resultCode, Intent intent) {
+		if (requestCode == 0) {
+			if (resultCode == RESULT_OK) {
+				String codigo = intent.getStringExtra("SCAN_RESULT");
+				campoPesquisa.setText(codigo);
+				// Handle successful scan
+			} else if (resultCode == RESULT_CANCELED) {
+				// Handle cancel
+			}
+		}
+	}
+
+}

@@ -1,0 +1,49 @@
+9
+
+dir
+13536
+https://fw.lab.sp.cefetsp.br/svn/a6pgp/A2012-PDS/DeusNinjaDoCotopete/01Search_Android/res
+https://fw.lab.sp.cefetsp.br/svn/a6pgp
+
+
+
+2012-10-26T00:31:20.950075Z
+12198
+sp0951242
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+72fe1d9a-8248-0410-b756-cde062451638
+
+anim
+dir
+
+drawable
+dir
+
+drawable-hdpi
+dir
+
+drawable-ldpi
+dir
+
+drawable-mdpi
+dir
+
+layout
+dir
+
+values
+dir
+

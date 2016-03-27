@@ -1,0 +1,143 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package Modelos;
+
+import java.io.Serializable;
+import java.math.BigDecimal;
+import java.util.Date;
+import javax.persistence.*;
+
+/**
+ *
+ * @author Nathan
+ */
+@Entity
+@Table(name = "historico", catalog = "01search", schema = "")
+@NamedQueries({
+	@NamedQuery(name = "Historico.findQtdComprada", query = "select hist.quantidade from Historico hist, ItemLista ilis, Lista lis, CodigobarrasItem cite " +
+		"where ilis.itemListaPK.idLista = lis.idLista and ilis.itemListaPK.idItem = cite.codigobarrasItemPK.idItem and hist.historicoPK.idLista = ilis.itemListaPK.idLista and " +
+		"hist.historicoPK.idItem = ilis.itemListaPK.idItem and hist.historicoPK.idCodigoBarras = cite.codigobarrasItemPK.idCodigobarras and hist.historicoPK.versaoCompra = lis.versaoCompra and " +
+		"ilis.itemListaPK.idItem = :itemId and ilis.itemListaPK.idLista = :listaId and cite.codigobarrasItemPK.idCodigobarras = :codigoId"),
+	@NamedQuery(name = "Historico.findAll", query = "SELECT h FROM Historico h"),
+    @NamedQuery(name = "Historico.findByIdLista", query = "SELECT h FROM Historico h WHERE h.historicoPK.idLista = :idLista"),
+    @NamedQuery(name = "Historico.findByIdItem", query = "SELECT h FROM Historico h WHERE h.historicoPK.idItem = :idItem"),
+    @NamedQuery(name = "Historico.findByIdCodigoBarras", query = "SELECT h FROM Historico h WHERE h.historicoPK.idCodigoBarras = :idCodigoBarras"),
+    @NamedQuery(name = "Historico.findByIdEstabelecimento", query = "SELECT h FROM Historico h WHERE h.historicoPK.idEstabelecimento = :idEstabelecimento"),
+    @NamedQuery(name = "Historico.findByCompraData", query = "SELECT h FROM Historico h WHERE h.historicoPK.compraData = :compraData"),
+    @NamedQuery(name = "Historico.findByQuantidade", query = "SELECT h FROM Historico h WHERE h.quantidade = :quantidade"),
+   // @NamedQuery(name = "Historico.findVersao", query = "SELECT MAX(t.val) FROM (SELECT MAX(h.versaoCompra) AS Val FROM historico h UNION ALL SELECT MAX(hil.versao_compra) AS Val FROM historico_item_lista hil)t"),
+    @NamedQuery(name = "Historico.findByPreco", query = "SELECT h FROM Historico h WHERE h.preco = :preco")})
+public class Historico implements Serializable {
+    private static final long serialVersionUID = 1L;
+    
+    @EmbeddedId
+    protected HistoricoPK historicoPK;
+    @Column(name = "quantidade")
+    private Integer quantidade;
+   
+    @Column(name = "preco", precision = 7, scale = 2)
+    private BigDecimal preco;
+   
+    @JoinColumns({
+        @JoinColumn(name = "idCodigoBarras", referencedColumnName = "idCodigoBarras",insertable = false, updatable = false),
+        @JoinColumn(name = "idEstabelecimento", referencedColumnName = "idEstabelecimento",insertable = false, updatable = false)})
+    @ManyToOne(fetch = FetchType.EAGER)
+    private Produto produto;
+    
+    @JoinColumns({
+        @JoinColumn(name = "idLista", referencedColumnName = "idLista", insertable = false, updatable = false),
+        @JoinColumn(name = "idItem", referencedColumnName = "idItem", insertable = false, updatable = false)})
+    @ManyToOne(fetch = FetchType.EAGER)
+    private ItemLista itemLista;
+    
+    @JoinColumn(name = "idUnidade", referencedColumnName = "idUnidade"/*, nullable = false*/)
+    @ManyToOne(/*optional = false, */fetch = FetchType.LAZY)
+    private UnidadeMedida idUnidade;
+
+    public Historico() {
+    }
+
+    public Historico(HistoricoPK historicoPK) {
+        this.historicoPK = historicoPK;
+    }
+
+    public Historico(int idLista, int idItem, String idCodigoBarras, int idEstabelecimento, Date compraData) {
+        this.historicoPK = new HistoricoPK(idLista, idItem, idCodigoBarras, idEstabelecimento, compraData);
+    }
+
+    public HistoricoPK getHistoricoPK() {
+        return historicoPK;
+    }
+
+    public void setHistoricoPK(HistoricoPK historicoPK) {
+        this.historicoPK = historicoPK;
+    }
+
+    public Integer getQuantidade() {
+        return quantidade;
+    }
+
+    public void setQuantidade(Integer quantidade) {
+        this.quantidade = quantidade;
+    }
+
+    public BigDecimal getPreco() {
+        return preco;
+    }
+
+    public void setPreco(BigDecimal preco) {
+        this.preco = preco;
+    }
+
+    public Produto getProduto() {
+        return produto;
+    }
+
+    public void setProduto(Produto produto) {
+        this.produto = produto;
+    }
+
+    public ItemLista getItemLista() {
+        return itemLista;
+    }
+
+    public void setItemLista(ItemLista itemLista) {
+        this.itemLista = itemLista;
+    }
+
+    public UnidadeMedida getIdUnidade() {
+        return idUnidade;
+    }
+
+    public void setIdUnidade(UnidadeMedida idUnidade) {
+        this.idUnidade = idUnidade;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (historicoPK != null ? historicoPK.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof Historico)) {
+            return false;
+        }
+        Historico other = (Historico) object;
+        if ((this.historicoPK == null && other.historicoPK != null) || (this.historicoPK != null && !this.historicoPK.equals(other.historicoPK))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "modelos.Historico[ historicoPK=" + historicoPK + " ]";
+    }
+    
+}

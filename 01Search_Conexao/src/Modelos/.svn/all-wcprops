@@ -1,0 +1,149 @@
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/a6pgp/!svn/ver/12187/A2012-PDS/DeusNinjaDoCotopete/01Search_Conexao/src/Modelos
+END
+Historico.java
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/a6pgp/!svn/ver/9766/A2012-PDS/DeusNinjaDoCotopete/01Search_Conexao/src/Modelos/Historico.java
+END
+ItemLista.java
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/a6pgp/!svn/ver/13538/A2012-PDS/DeusNinjaDoCotopete/01Search_Conexao/src/Modelos/ItemLista.java
+END
+Usuario.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/a6pgp/!svn/ver/9703/A2012-PDS/DeusNinjaDoCotopete/01Search_Conexao/src/Modelos/Usuario.java
+END
+ListaUsuario.java
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/a6pgp/!svn/ver/9766/A2012-PDS/DeusNinjaDoCotopete/01Search_Conexao/src/Modelos/ListaUsuario.java
+END
+ItemListaPK.java
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/a6pgp/!svn/ver/9116/A2012-PDS/DeusNinjaDoCotopete/01Search_Conexao/src/Modelos/ItemListaPK.java
+END
+HistoricoPK.java
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/a6pgp/!svn/ver/13538/A2012-PDS/DeusNinjaDoCotopete/01Search_Conexao/src/Modelos/HistoricoPK.java
+END
+Codigobarras.java
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/a6pgp/!svn/ver/13538/A2012-PDS/DeusNinjaDoCotopete/01Search_Conexao/src/Modelos/Codigobarras.java
+END
+Login.java
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/a6pgp/!svn/ver/9116/A2012-PDS/DeusNinjaDoCotopete/01Search_Conexao/src/Modelos/Login.java
+END
+UnidadeMedida.java
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/a6pgp/!svn/ver/9766/A2012-PDS/DeusNinjaDoCotopete/01Search_Conexao/src/Modelos/UnidadeMedida.java
+END
+Departamento.java
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/a6pgp/!svn/ver/9944/A2012-PDS/DeusNinjaDoCotopete/01Search_Conexao/src/Modelos/Departamento.java
+END
+Subdepartamento.java
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/a6pgp/!svn/ver/9944/A2012-PDS/DeusNinjaDoCotopete/01Search_Conexao/src/Modelos/Subdepartamento.java
+END
+Lista.java
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/a6pgp/!svn/ver/13538/A2012-PDS/DeusNinjaDoCotopete/01Search_Conexao/src/Modelos/Lista.java
+END
+UsuarioItem.java
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/a6pgp/!svn/ver/13538/A2012-PDS/DeusNinjaDoCotopete/01Search_Conexao/src/Modelos/UsuarioItem.java
+END
+Conversao.java
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/a6pgp/!svn/ver/9766/A2012-PDS/DeusNinjaDoCotopete/01Search_Conexao/src/Modelos/Conversao.java
+END
+HistoricoPreco.java
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/a6pgp/!svn/ver/12187/A2012-PDS/DeusNinjaDoCotopete/01Search_Conexao/src/Modelos/HistoricoPreco.java
+END
+CodigobarrasItem.java
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/a6pgp/!svn/ver/13538/A2012-PDS/DeusNinjaDoCotopete/01Search_Conexao/src/Modelos/CodigobarrasItem.java
+END
+Marca.java
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/a6pgp/!svn/ver/9116/A2012-PDS/DeusNinjaDoCotopete/01Search_Conexao/src/Modelos/Marca.java
+END
+UsuarioItemPK.java
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/a6pgp/!svn/ver/13538/A2012-PDS/DeusNinjaDoCotopete/01Search_Conexao/src/Modelos/UsuarioItemPK.java
+END
+HistoricoPrecoPK.java
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/a6pgp/!svn/ver/12187/A2012-PDS/DeusNinjaDoCotopete/01Search_Conexao/src/Modelos/HistoricoPrecoPK.java
+END
+Produto.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/a6pgp/!svn/ver/9766/A2012-PDS/DeusNinjaDoCotopete/01Search_Conexao/src/Modelos/Produto.java
+END
+CodigobarrasItemPK.java
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/a6pgp/!svn/ver/13538/A2012-PDS/DeusNinjaDoCotopete/01Search_Conexao/src/Modelos/CodigobarrasItemPK.java
+END
+Estabelecimento.java
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/a6pgp/!svn/ver/13538/A2012-PDS/DeusNinjaDoCotopete/01Search_Conexao/src/Modelos/Estabelecimento.java
+END
+ProdutoPK.java
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/a6pgp/!svn/ver/9116/A2012-PDS/DeusNinjaDoCotopete/01Search_Conexao/src/Modelos/ProdutoPK.java
+END
+Item.java
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/a6pgp/!svn/ver/9944/A2012-PDS/DeusNinjaDoCotopete/01Search_Conexao/src/Modelos/Item.java
+END

@@ -1,0 +1,619 @@
+package Principal;
+
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import Converters.HibernateCollectionConverter;
+import javax.jws.WebService;
+
+import ControleJPA.modelos.*;
+import Modelos.*;
+
+import com.thoughtworks.xstream.XStream;
+import com.thoughtworks.xstream.io.xml.DomDriver;
+import com.thoughtworks.xstream.mapper.Mapper;
+
+@WebService
+public class ServidorWS {
+
+	ThreadLocal<XStream> xs = new ThreadLocal<XStream>() {
+
+		@Override
+		protected XStream initialValue() {
+
+			XStream xStream = new XStream(new DomDriver());
+
+			xStream.alias("Departamento", Departamento.class);
+			xStream.alias("Estabelecimento", Estabelecimento.class);
+			xStream.alias("Lista", Lista.class);
+			xStream.alias("Login", Login.class);
+			xStream.alias("Marca", Marca.class);
+			xStream.alias("Codigobarras", Codigobarras.class);
+			xStream.alias("Produto", Produto.class);
+			xStream.alias("Codigobarras", Codigobarras.class);
+			xStream.alias("Conversao", Conversao.class);
+			xStream.alias("Usuario", Usuario.class);
+			xStream.alias("Item", Item.class);
+			xStream.alias("ItemLista", ItemLista.class);
+			xStream.alias("Subdepartamento", Subdepartamento.class);
+			xStream.alias("ArrayList", ArrayList.class);
+			xStream.alias("List", List.class);
+			xStream.alias("ListaUsuario", ListaUsuario.class);
+			xStream.alias("PersistentBag",
+					org.hibernate.collection.internal.PersistentBag.class);
+			xStream.alias("HistoricoPreco", HistoricoPreco.class);
+			xStream.alias("HistoricoPrecoPK", HistoricoPrecoPK.class);
+
+			// omitir atributos de relacionamento
+			xStream.processAnnotations(Subdepartamento.class);
+			xStream.processAnnotations(Codigobarras.class);
+			xStream.processAnnotations(Produto.class);
+			xStream.processAnnotations(Lista.class);
+			xStream.processAnnotations(Item.class);
+			xStream.processAnnotations(Subdepartamento.class);
+			xStream.processAnnotations(Estabelecimento.class);
+
+			// collections do hibernate para o xstream
+			xStream.addDefaultImplementation(java.util.ArrayList.class,
+					org.hibernate.collection.internal.PersistentList.class);
+			xStream.addDefaultImplementation(java.util.ArrayList.class,
+					org.hibernate.collection.internal.PersistentBag.class);
+			Mapper mapper = xStream.getMapper();
+			xStream.registerConverter(new HibernateCollectionConverter(mapper));
+
+			// xStream.aliasSystemAttribute(null, "class");
+
+			return xStream;
+		}
+	};
+
+	public static List<String> listClasses(String packageName,
+			ClassLoader classLoader) {
+
+		final List<ResourceList.ResourceData> fl = new ResourceList(
+				packageName, null, ".class").list(classLoader);
+
+		final List<String> classes = new ArrayList<String>();
+
+		for (ResourceList.ResourceData resource : fl) {
+			// removes the .class extension
+			final String s = resource.getName();
+			classes.add(packageName + '.' + s.substring(0, s.length() - 6));
+		}
+
+		System.out.println("Found " + classes.size() + " classes in package "
+				+ packageName);
+		return classes;
+
+	}
+
+	public String buscarCodigobarras_Codigobarras(String id) {
+
+		Codigobarras param = new Codigobarras();
+		param.setIdCodigoBarras(id);
+
+		Codigobarras codigobarras = Codigobarras_JPA.get().select(
+				new Codigobarras(), id);
+
+		String xml = xs.get().toXML(codigobarras);
+
+		return xml;
+	}
+
+	public String buscarCodigobarras_Busca(String busca) {
+
+		ArrayList<Codigobarras> array = (ArrayList<Codigobarras>) Codigobarras_JPA
+				.get().buscarCodigobarras(busca);
+
+		String xml = xs.get().toXML(array);
+
+		return xml;
+	}
+
+	public String buscarCodigobarras_Subdepartamento(int idSubdepartamento) {
+
+		Subdepartamento objeto = new Subdepartamento();
+		objeto.setIdSubdepartamento(idSubdepartamento);
+
+		ArrayList<Codigobarras> array = new ArrayList<Codigobarras>();
+		array = (ArrayList<Codigobarras>) Codigobarras_JPA.get()
+				.buscarCodigobarras(objeto);
+
+		String xml = xs.get().toXML(array);
+
+		return xml;
+	}
+
+	public String buscarCodigobarras_Item(int idItem) {
+
+		Item objeto = new Item();
+		objeto.setIdItem(idItem);
+
+		ArrayList<Codigobarras> array = new ArrayList<Codigobarras>();
+		array = (ArrayList<Codigobarras>) Item_JPA.get().buscarCodigobarras(
+				objeto);
+
+		String xml = xs.get().toXML(array);
+
+		return xml;
+	}
+
+	public String buscarProduto_Codigobarras(String idCodigoBarras) {
+
+		Codigobarras objeto = new Codigobarras();
+		objeto.setIdCodigoBarras(idCodigoBarras);
+
+		ArrayList<Produto> array = Produto_JPA.get().buscarProduto(objeto);
+
+		String xml = xs.get().toXML(array);
+
+		return xml;
+	}
+
+	public String buscarCodigobarras_ItemLista_Estabelecimento(String xsHash) {
+
+		// converter xml para hashmap
+		HashMap<String, String> paramentro;
+		paramentro = (HashMap<String, String>) xs.get().fromXML(xsHash);
+
+		// converter xml para arrayItemLista
+		String xsArrItemLista = paramentro.get("array");
+		ArrayList<ItemLista> array_itemLista = (ArrayList<ItemLista>) xs.get()
+				.fromXML(xsArrItemLista);
+
+		// converter string para int do idEstabelecimento
+		Integer idEstabelecimento = Integer.parseInt(paramentro
+				.get("estabelecimento"));
+
+		// buscar array de array codigobarras
+		ArrayList<ArrayList<Codigobarras>> array_Codigobarras = Codigobarras_JPA
+				.get().buscarCodigobarras(array_itemLista, idEstabelecimento);
+
+		String xml = xs.get().toXML(array_Codigobarras);
+
+		return xml;
+	}
+
+	public String buscarPrecoCorrente(String xsHash) {
+
+		// converter xml para hashmap
+		HashMap<String, String> paramentro;
+		paramentro = (HashMap<String, String>) xs.get().fromXML(xsHash);
+
+		// converter xml para arrayCodigobarras
+		String xsArrCodigobarras = paramentro.get("array");
+		ArrayList<ArrayList<Codigobarras>> arrCodigobarras = (ArrayList<ArrayList<Codigobarras>>) xs
+				.get().fromXML(xsArrCodigobarras);
+
+		// converter string para int do idEstabelecimento
+		Integer idEstabelecimento = Integer.parseInt(paramentro
+				.get("estabelecimento"));
+
+		// buscar array espelho de Valores do produto
+		ArrayList<ArrayList<Codigobarras>> arrBig = Codigobarras_JPA.get()
+				.buscarPrecoCorrente(arrCodigobarras, idEstabelecimento);
+
+		String xml = xs.get().toXML(arrBig);
+
+		return xml;
+	}
+
+	public String buscarDepartamento() {
+
+		ArrayList<Departamento> array = new ArrayList<Departamento>();
+		array = (ArrayList<Departamento>) Departamento_JPA.get().selectAll(
+				"Departamento");
+
+		String xml = xs.get().toXML(array);
+
+		return xml;
+	}
+
+	public String buscarDepartamento_Subdepartamento(int idSubdepartamento) {
+
+		Subdepartamento subdepartamento = new Subdepartamento();
+		subdepartamento.setIdSubdepartamento(idSubdepartamento);
+
+		Departamento objeto = new Departamento();
+		objeto = Departamento_JPA.get().buscarSubdepartamento(subdepartamento);
+
+		String xml = xs.get().toXML(objeto);
+		/*
+		 * public String buscarDepartamento_Departamento(int idDepartamento) {
+		 * 
+		 * Departamento objeto = new Departamento(); objeto =
+		 * Departamento_JPA.get().select(objeto, idDepartamento);
+		 * 
+		 * //omitir atributos de relacionamento
+		 * xs.get().processAnnotations(Subdepartamento.class);
+		 * 
+		 * String xml = xs.get().toXML(objeto);
+		 * 
+		 * return xml; }
+		 */
+		return xml;
+	}
+
+	public String buscarLista_Usuario(int idUsuario) {
+
+		Usuario objeto = new Usuario();
+		objeto.setIdUsuario(idUsuario);
+
+		List<Lista> array = new ArrayList<Lista>();
+		array = Usuario_JPA.get().buscarLista(objeto);
+
+		String xml = xs.get().toXML(array);
+		return xml;
+	}
+
+	public String buscarItem_Usuario(int idUsuario) {
+
+		Usuario objeto = new Usuario();
+		objeto.setIdUsuario(idUsuario);
+
+		ArrayList<Item> array = new ArrayList<Item>();
+		array = (ArrayList<Item>) Item_JPA.get().buscarItemAtivo(objeto);
+
+		String xml = xs.get().toXML(array);
+
+		return xml;
+	}
+
+	public String buscarItem_Item(int idItem) {
+
+		Item item = new Item();
+		item.setIdItem(idItem);
+
+		item = Item_JPA.get().buscarItem(item);
+
+		String xml = xs.get().toXML(item);
+
+		return xml;
+	}
+
+	public String buscarItemLista_ItemLista(String itemListaPK) {
+
+		ItemLista itemLista = new ItemLista();
+
+		ItemListaPK objetoPK = new ItemListaPK();
+		objetoPK = (ItemListaPK) xs.get().fromXML(itemListaPK);
+
+		itemLista = ItemLista_JPA.get().select(itemLista, objetoPK);
+
+		String xml = xs.get().toXML(itemLista);
+
+		return xml;
+	}
+
+	public String buscarItemLista_Lista(int idLista) {
+
+		Lista objeto = new Lista();
+		objeto.setIdLista(idLista);
+
+		ArrayList<ItemLista> array = new ArrayList<ItemLista>();
+		array = (ArrayList<ItemLista>) ItemLista_JPA.get().buscarItemLista(
+				objeto);
+
+		String xml = xs.get().toXML(array);
+
+		return xml;
+	}
+
+	public String buscarMarca_Codigobarras(String idCodigobarras) {
+
+		Codigobarras objeto = new Codigobarras();
+		objeto.setIdCodigoBarras(idCodigobarras);
+
+		Marca marca = new Marca();
+
+		marca = Codigobarras_JPA.get().buscarMarca(objeto);
+
+		String xml = xs.get().toXML(marca);
+
+		return xml;
+	}
+
+	public String buscarMarca_Id(int idMarca) {
+
+		Marca marca = new Marca();
+
+		marca = Marca_JPA.get().select(marca, idMarca);
+
+		String xml = xs.get().toXML(marca);
+
+		return xml;
+	}
+
+	/*
+	 * public String buscarSubdepartamento_Subdepartamento(int
+	 * idSubdepartamento) {
+	 * 
+	 * Subdepartamento subdepartamento = new Subdepartamento(); subdepartamento
+	 * = Subdepartamento_JPA.get().select(subdepartamento, idSubdepartamento);
+	 * 
+	 * String xml = xs.get().toXML(subdepartamento);
+	 * 
+	 * return xml; }
+	 */
+
+	/*
+	 * public String buscarSubdepartamento_Departamento(int idDepartamento) {
+	 * 
+	 * Departamento objeto = new Departamento();
+	 * objeto.setIdDepartamento(idDepartamento);
+	 * 
+	 * ArrayList<Subdepartamento> array = new ArrayList<Subdepartamento>();
+	 * array = (ArrayList<Subdepartamento>)
+	 * Subdepartamento_JPA.get().buscarSubdepartamento(objeto);
+	 * 
+	 * String xml = xs.get().toXML(array);
+	 * 
+	 * return xml; }
+	 */
+
+	public String buscarSubdepartamento_Codigobarras(String idCodigobarras) {
+
+		Codigobarras codigobarras = new Codigobarras();
+		codigobarras.setIdCodigoBarras(idCodigobarras);
+
+		Subdepartamento objeto = new Subdepartamento();
+		objeto = Subdepartamento_JPA.get().buscarSubdepartamento(codigobarras);
+
+		String xml = xs.get().toXML(objeto);
+
+		return xml;
+	}
+
+	public String buscarSubdepartamento_Departamento(int idDepartamento) {
+
+		Departamento departamento = new Departamento();
+		departamento.setIdDepartamento(idDepartamento);
+
+		ArrayList<Subdepartamento> objeto = new ArrayList<Subdepartamento>();
+		objeto = Subdepartamento_JPA.get().buscarSubdepartamento(departamento);
+
+		String xml = xs.get().toXML(objeto);
+
+		System.out.println(xml);
+
+		return xml;
+	}
+
+	public String buscarSubdepartamento_Id(int idSubdepartamento) {
+
+		Subdepartamento objeto = new Subdepartamento();
+		objeto = Subdepartamento_JPA.get().select(objeto, idSubdepartamento);
+
+		String xml = xs.get().toXML(objeto);
+
+		return xml;
+	}
+
+	public String buscarEstabelecimento() {
+
+		ArrayList<Estabelecimento> array = new ArrayList<Estabelecimento>();
+		array = (ArrayList<Estabelecimento>) Estabelecimentos_JPA.get()
+				.selectAll("Estabelecimento");
+
+		String xml = xs.get().toXML(array);
+
+		return xml;
+	}
+
+	public String buscarEstabelecimento_HashMap(String xmlarr) {
+
+		ArrayList<Estabelecimento> array = new ArrayList<Estabelecimento>();
+
+		ArrayList<Codigobarras> arr = (ArrayList<Codigobarras>) xs.get()
+				.fromXML(xmlarr);
+
+		array = (ArrayList<Estabelecimento>) Codigobarras_JPA.get()
+				.buscarEstabelecimento(arr);
+
+		String xml = xs.get().toXML(array);
+
+		return xml;
+	}
+
+	public String buscarDestaque(int idEstabelecimento) {
+
+		Estabelecimento objeto = new Estabelecimento();
+		objeto.setIdEstabelecimento(idEstabelecimento);
+
+		ArrayList<Produto> array = new ArrayList<Produto>();
+		array = Produto_JPA.get().buscarDestaque(objeto);
+
+		String xml = xs.get().toXML(array);
+
+		return xml;
+	}
+
+	public String buscarHistoricoPreco_HistoricoPrecoPK(String historicoPrecoPK) {
+
+		HistoricoPrecoPK pk = (HistoricoPrecoPK) xs.get().fromXML(
+				historicoPrecoPK);
+		ArrayList<HistoricoPreco> objeto = new ArrayList<HistoricoPreco>();
+
+		objeto = HistoricoPreco_JPA.get().buscarCodigobarras(pk);
+
+		String xml = xs.get().toXML(objeto);
+
+		return xml;
+	}
+
+	public void adicionarHistorico(String xsHash) {
+
+		// converter xml para hashmap
+		HashMap<String, String> paramentro;
+		paramentro = (HashMap<String, String>) xs.get().fromXML(xsHash);
+
+		// converter xml
+		String xsArrItemLista = paramentro.get("ItemLista");
+		String xsArrCodigobarras = paramentro.get("Codigobarras");
+
+		ArrayList<ItemLista> arrItemLista = (ArrayList<ItemLista>) xs.get()
+				.fromXML(xsArrItemLista);
+		ArrayList<ArrayList<Codigobarras>> arrCodigobarras = (ArrayList<ArrayList<Codigobarras>>) xs
+				.get().fromXML(xsArrCodigobarras);
+		Integer idEstabelecimento = Integer.parseInt(paramentro
+				.get("estabelecimento"));
+		Historico_JPA.get().adicionarHistorico(arrItemLista, arrCodigobarras,
+				idEstabelecimento);
+	}
+
+	public String adicionarLista(String lista) {
+
+		Lista list;
+
+		list = (Lista) xs.get().fromXML(lista);
+
+		Lista l = Lista_JPA.get().create(list);
+
+		String xml = xs.get().toXML(l);
+
+		return xml;
+	}
+
+	public String adicionarItem(String item) {
+
+		Item list;
+
+		list = (Item) xs.get().fromXML(item);
+
+		Item i = Item_JPA.get().create(list);
+
+		String xml = xs.get().toXML(i);
+
+		return xml;
+	}
+
+	public void adicionarItemLista(String itemListaXML) {
+
+		ItemLista itemLista;
+
+		itemLista = (ItemLista) xs.get().fromXML(itemListaXML);
+
+		ItemLista_JPA.get().update(itemLista);
+	}
+
+	public void adicionarUsuarioItem(String usuarioItem) {
+
+		UsuarioItem ui;
+
+		ui = (UsuarioItem) xs.get().fromXML(usuarioItem);
+
+		UsuarioItem_JPA.get().create(ui);
+	}
+
+	public void atualizarItem(String itemXML) {
+
+		Item item;
+
+		item = (Item) xs.get().fromXML(itemXML);
+
+		Item_JPA.get().update(item);
+	}
+
+	public void atualizarLista(String lista) {
+
+		Lista list;
+
+		list = (Lista) xs.get().fromXML(lista);
+
+		Lista_JPA.get().update(list);
+	}
+
+	public void atualizarItemLista(String itensListaXML) {
+
+		ItemLista itensLista;
+
+		itensLista = (ItemLista) xs.get().fromXML(itensListaXML);
+
+		ItemLista_JPA.get().update(itensLista);
+	}
+
+	public String removerItemLista(String itemLista) {
+
+		ItemLista il;
+
+		il = (ItemLista) xs.get().fromXML(itemLista);
+
+		// setando unidade medida - arrumar caso fizer a logica
+		il.setUnidadeMedida(new UnidadeMedida(1));
+		il.setAtivo(false);
+
+		ItemLista_JPA.get().update(il);
+		
+		return "";
+	}
+
+	public void removerCodigobarrasItem(String codigobarrasItem) {
+
+		CodigobarrasItem objeto;
+
+		objeto = (CodigobarrasItem) xs.get().fromXML(codigobarrasItem);
+
+		CodigobarrasItem_JPA.get().delete(objeto);
+	}
+
+	public void removerListaUsuario(String listaUsuario) {
+
+		ListaUsuario lu;
+		lu = (ListaUsuario) xs.get().fromXML(listaUsuario);
+
+		// busca lista
+		Lista lista = Lista_JPA.get().select(new Lista(),
+				lu.getLista().getIdLista());
+		// lista de usuarios
+		List<Usuario> usuarios = lista.getUsuarios();
+
+		// <= 1 deleta lista | só deleta usuario da lista
+		if (usuarios.size() <= 1) {
+
+			System.out.println("teste 1 " + lista.getNome());
+			// delatar lista
+			Lista_JPA.get().delete(lista);
+		} else {
+			System.out.println("teste 2 " + lista.getNome());
+			// remover usuario
+			usuarios.remove(lu.getUsuario());
+			lista.setUsuarios(usuarios);
+			Lista_JPA.get().update(lista);
+		}
+	}
+
+	public void removerUsuarioItem(String usuarioItem) {
+
+		UsuarioItem ui;
+		ui = (UsuarioItem) xs.get().fromXML(usuarioItem);
+
+		// busca item
+		Item item = Item_JPA.get().select(new Item(), ui.getItem().getIdItem());
+		// lista de usuarios
+		List<Usuario> usuarios = item.getUsuarios();
+
+		// <= 1 deleta lista | só deleta usuario da item
+		if (usuarios.size() <= 1) {
+
+			// delatar lista
+			item.setAtivo(false);
+			Item_JPA.get().update(item);
+		} else {
+			// remover usuario
+			usuarios.remove(ui.getUsuario());
+			item.setUsuarios(usuarios);
+			Item_JPA.get().update(item);
+		}
+	}
+
+	/*
+	 * public void removerProdutosLista(String produto) {
+	 * 
+	 * ItemLista item;
+	 * 
+	 * item = (ItemLista) xs.get().fromXML(produto);
+	 * 
+	 * ItemLista_JPA.get().delete(item); }
+	 */
+}

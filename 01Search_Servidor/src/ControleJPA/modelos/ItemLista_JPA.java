@@ -1,0 +1,52 @@
+package ControleJPA.modelos;
+
+import java.util.ArrayList;
+import javax.persistence.Query;
+import ControleJPA.OperacaoGenerica;
+import Modelos.ItemLista;
+import Modelos.ItemListaPK;
+import Modelos.Lista;
+import Modelos.Usuario;
+
+public class ItemLista_JPA extends OperacaoGenerica<ItemLista, ItemListaPK> {
+
+	private static final ItemLista_JPA itemLista_JPA = new ItemLista_JPA();
+
+	public static ItemLista_JPA get() {
+		return itemLista_JPA;
+	}
+
+	public ArrayList<ItemLista> buscarItemLista(Lista lista) {
+
+		abrir();
+
+		Query query = manager.createNamedQuery("ItemLista.findByIdLista");
+
+		query.setParameter("idLista", lista.getIdLista());
+		
+		ArrayList<ItemLista> array = (ArrayList<ItemLista>) query.getResultList();
+		
+		fechar();
+		
+		for(ItemLista i : array){
+			System.out.println("TESTE DE FORMULA "+ i.getData_qtdRestante());
+		}
+
+		return array;
+	}
+	
+	/*public ArrayList<ItemLista> buscarItemLista(Usuario usuario) {
+
+		abrir();
+
+		Query query = manager.createNamedQuery("ItemLista.findByIdUsuario");
+
+		query.setParameter("idUsuario", usuario.getIdUsuario());
+		
+		ArrayList<ItemLista> array = (ArrayList<ItemLista>) query.getResultList();
+
+		fechar();
+
+		return array;
+	}*/
+}
